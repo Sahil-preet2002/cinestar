@@ -2,6 +2,7 @@ import GeminiPlanner from "./components/GeminiPlanner";
 import Galaxy from "./components/Galaxy";
 import AnimatedSections from "./components/ui/animated-sections-1";
 import ScrollExpandMedia from './components/blocks/scroll-expansion-hero';
+import ArtistShowcase from './components/ArtistShowcase';
 
 export default function Home() {
   return (
@@ -35,6 +36,11 @@ export default function Home() {
       {/* GEMINI AI PLANNER SECTION */}
       <section className="w-full bg-neutral-900">
         <GeminiPlanner />
+      </section>
+
+      {/* ARTIST SHOWCASE SECTION */}
+      <section className="w-full">
+        <ArtistShowcase />
       </section>
 
       {/* ANIMATED SECTIONS */}
