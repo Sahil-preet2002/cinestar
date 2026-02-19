@@ -1,46 +1,48 @@
 import GeminiPlanner from "./components/GeminiPlanner";
 import Galaxy from "./components/Galaxy";
 import AnimatedSections from "./components/ui/animated-sections-1";
-import ScrollExpandMedia from './components/blocks/scroll-expansion-hero';
+import HeroScrollVideo from "./components/ui/scroll-animated-video";
 import ArtistShowcase from './components/ArtistShowcase';
-import { ParallaxScrollSecondDemo } from './components/ParallaxScrollDemo';
+import PremiumGallery from "./components/ui/gallery-premium";
 import { HeroSection } from './components/ui/hero-section';
+import CinestarArchive from "./components/CinestarArchive";
+import Sponsors from "./components/Sponsors";
 
 export default function Home() {
   return (
     <>
       {/* HERO SECTION - YOGESH SHARMA */}
-   
+      <section className="w-full">
+        <AnimatedSections embed />
+      </section>
 
       {/* SCROLL EXPANSION HERO SECTION - MAIN FEATURE */}
-      <div className='min-h-screen'>
-        <ScrollExpandMedia
-          mediaType="video"
-          mediaSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1"
-          posterSrc="https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg"
-          bgImageSrc="https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYMNjMlBUYHaeYpxduXPVNwf8mnFA61L7rkcoS"
-          title="Award Night Experience"
-          date="Premium Cinema Event"
-          scrollToExpand="Scroll to Expand"
-          textBlend
-        >
-          <div className='max-w-4xl mx-auto'>
-            <h2 className='text-3xl font-bold mb-6 text-black dark:text-white'>
-              Immersive Cinema Experience
-            </h2>
-            <p className='text-lg mb-8 text-black dark:text-white'>
-              Experience the magic of cinema like never before. Our award-winning venue combines cutting-edge technology with timeless elegance to create unforgettable moments. Join us for an evening of glamour, artistry, and pure entertainment.
-            </p>
-            <p className='text-lg mb-8 text-black dark:text-white'>
-              Step into a world where every frame tells a story, every sound resonates with emotion, and every moment becomes an unforgettable memory. Our premium cinema experience redefines entertainment.
-            </p>
-          </div>
-        </ScrollExpandMedia>
-      </div>
+      <HeroScrollVideo
+        title="Over 120 superhit Bollywood shows"
+        subtitle="in Australia"
+        meta="2004 - 2024"
+        media="https://player.vimeo.com/video/1051814348"
+        overlay={{
+          caption: "CINESTAR • EVENTS",
+          heading: "Pioneering Bollywood Entertainment",
+          paragraphs: [
+            "Welcome to Cinestar Events – the name which pioneers Bollywood entertainment in Australia, New Zealand, Malaysia and the Fiji Islands.",
+            "Starting two decades ago in 2004, Cinestar Events has consistently raised the bar in live entertainment from Bollywood. We have worked with legends as well as new talent – bringing actors, singers, dancers – and organised over 120 super successful shows across the region.",
+          ],
+        }}
+        themeMode="system"
+        style={{
+          //@ts-ignore
+          "--text": "#ffffff",
+          "--accent": "#D4AF37",
+          "--muted": "rgba(255, 255, 255, 0.6)",
+        }}
+      />
 
-          <section className="w-full">
+      <section className="w-full">
         <HeroSection />
       </section>
+      <CinestarArchive />
 
       {/* ARTIST SHOWCASE SECTION */}
       <section className="w-full">
@@ -49,14 +51,13 @@ export default function Home() {
 
       {/* GALAXY PARALLAX SCROLL SECTION */}
       <section className="w-full bg-black">
-        <ParallaxScrollSecondDemo />
+        <PremiumGallery />
       </section>
 
       {/* ANIMATED SECTIONS */}
-      <section className="w-full">
-        <AnimatedSections embed />
-      </section>
-   
+
+
+      <Sponsors />
     </>
   );
 }

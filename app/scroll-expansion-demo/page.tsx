@@ -24,7 +24,7 @@ interface MediaContentCollection {
 
 const sampleMediaContent: MediaContentCollection = {
   video: {
-    src: 'https://me7aitdbxq.ufs.sh/f/2wsMIGDMQRdYuZ5R8ahEEZ4aQK56LizRdfBSqeDMsmUIrJN1',
+    src: 'https://player.vimeo.com/video/1051814348',
     poster:
       'https://images.pexels.com/videos/5752729/space-earth-universe-cosmos-5752729.jpeg',
     background:

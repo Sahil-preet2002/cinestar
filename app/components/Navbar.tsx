@@ -261,11 +261,9 @@ const Navbar = () => {
       {/* Cross Navbar */}
       <nav 
         ref={navRef}
-        className={`fixed top-0 w-full text-white px-6 md:px-12 lg:px-20 py-5 flex justify-between items-center z-50 font-oswald tracking-wide transition-all duration-500 ${
-          isScrolled 
-            ? 'bg-black/95 backdrop-blur-xl shadow-2xl shadow-yellow-500/10 border-b border-yellow-500/20' 
-            : 'bg-black/80 backdrop-blur-md border-b border-white/5'
-        }`}
+        className={`fixed top-0 left-0 right-0 w-full text-white px-6 md:px-12 lg:px-20 py-5 flex justify-between items-center z-[100] font-oswald tracking-wide transition-all duration-500 
+      
+        `}
       >
         
         {/* LOGO SECTION */}
@@ -322,7 +320,7 @@ const Navbar = () => {
           {/* MENU TOGGLE */}
           <button 
             ref={menuButtonRef}
-            className="text-white menu-button-glow z-70 relative group cursor-pointer"
+            className="text-white menu-button-glow z-[110] relative group cursor-pointer"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <div className="w-8 h-6 flex flex-col justify-between relative">
@@ -339,13 +337,13 @@ const Navbar = () => {
       {/* Sidebar Menu */}
       <div 
         ref={menuRef}
-        className="fixed top-0 right-0 w-full h-screen bg-gradient-to-b from-black/98 via-black/95 to-black/98 backdrop-blur-xl z-60 border-l border-yellow-500/30 flex flex-col md:flex-row overflow-y-auto md:overflow-y-visible opacity-0 scale-0"
+        className="fixed top-0 right-0 w-full h-screen bg-gradient-to-b from-black/98 via-black/95 to-black/98 backdrop-blur-xl z-[105] border-l border-yellow-500/30 flex flex-col md:flex-row overflow-y-auto md:overflow-y-visible opacity-0 scale-0"
         style={{ transformOrigin: 'top right' }}
       >
         {/* Close Button */}
         <button
           onClick={() => setIsMenuOpen(false)}
-          className="absolute top-6 right-6 text-yellow-400 hover:text-yellow-300 transition-colors z-50"
+          className="absolute top-6 right-6 text-yellow-400 hover:text-yellow-300 transition-colors z-[110]"
         >
           <X size={32} />
         </button>
@@ -485,7 +483,7 @@ const Navbar = () => {
       {/* Overlay */}
       {isMenuOpen && (
         <div 
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 transition-opacity duration-300"
+          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[95] transition-opacity duration-300"
           onClick={() => setIsMenuOpen(false)}
           style={{
             animation: 'fadeIn 0.3s ease-in'
