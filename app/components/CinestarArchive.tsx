@@ -414,7 +414,7 @@ export default function CinestarArchive() {
 
             <div className="fixed bottom-10 left-10 z-[100] flex items-center gap-4">
                 <div className="w-12 h-[1px] bg-[#D4AF37] opacity-50"></div>
-                <p className="cormorant text-2xl italic text-[#D4AF37] opacity-80 font-[family-name:var(--font-cormorant-garamond)]">
+                <p className="cormorant text-2xl italic text-[#D4AF37] opacity-80 font-sans">
                     Legacy of Excellence
                 </p>
             </div>

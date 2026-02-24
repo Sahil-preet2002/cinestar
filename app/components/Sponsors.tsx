@@ -24,7 +24,7 @@ export default function Sponsors() {
                     <InfiniteSlider gap={50} duration={120} direction="horizontal">
                         {Array(4).fill(null).map((_, i) => (
                             <div key={i} className="flex gap-12 items-center">
-                                <span className="text-[15vw] font-black font-[family-name:var(--font-syncopate)] text-white whitespace-nowrap leading-none">
+                                <span className="text-[15vw] font-black font-sans text-white whitespace-nowrap leading-none">
                                     CINESTAR EVENT LEGACY
                                 </span>
                                 <Star className="w-[8vw] h-[8vw] fill-current text-white" />
@@ -37,12 +37,12 @@ export default function Sponsors() {
             {/* Content Container */}
             <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10 text-center">
                 <span className="inline-block py-1 px-3 border border-[#D4AF37]/30 rounded-full bg-[#D4AF37]/5 backdrop-blur-sm mb-6">
-                    <span className="text-[#D4AF37] text-xs font-[family-name:var(--font-space-grotesk)] tracking-[0.3em] uppercase font-bold">
+                    <span className="text-[#D4AF37] text-xs font-sans tracking-[0.3em] uppercase font-bold">
                         Trusted Partners
                     </span>
                 </span>
 
-                <h2 className="text-3xl md:text-5xl font-[family-name:var(--font-syncopate)] font-bold text-white leading-tight">
+                <h2 className="text-3xl md:text-5xl font-sans font-bold text-white leading-tight">
                     POWERING <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF5C3] to-[#D4AF37]">EXCELLENCE</span>
                 </h2>
             </div>

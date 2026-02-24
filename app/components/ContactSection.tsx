@@ -116,7 +116,7 @@ const ContactSection = () => {
                     </div>
                     <h1
                         ref={titleRef}
-                        className="text-5xl md:text-7xl lg:text-8xl font-black font-[family-name:var(--font-syncopate)] leading-tight uppercase"
+                        className="text-5xl md:text-7xl lg:text-8xl font-black font-sans leading-tight uppercase"
                     >
                         Let's Create <br />
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#FFF5C3] to-[#D4AF37]">
@@ -129,7 +129,7 @@ const ContactSection = () => {
                     {/* Left: Contact Info */}
                     <div ref={infoRef} className="lg:w-1/3 space-y-12">
                         <div className="space-y-8">
-                            <p className="text-white/60 font-[family-name:var(--font-space-grotesk)] text-lg leading-relaxed">
+                            <p className="text-white/60 font-sans text-lg leading-relaxed">
                                 Have a project in mind or want to book an event? We're here to turn
                                 your vision into a spectacular reality. Reach out to us today.
                             </p>
@@ -144,7 +144,7 @@ const ContactSection = () => {
                                     </h3>
                                     <a
                                         href="tel:+61885569364"
-                                        className="text-xl font-[family-name:var(--font-space-grotesk)] hover:text-[#D4AF37] transition-colors"
+                                        className="text-xl font-sans hover:text-[#D4AF37] transition-colors"
                                     >
                                         +61 8 8569 3645
                                     </a>
@@ -161,7 +161,7 @@ const ContactSection = () => {
                                     </h3>
                                     <a
                                         href="mailto:info@cinestarevents.com.au"
-                                        className="text-xl font-[family-name:var(--font-space-grotesk)] hover:text-[#D4AF37] transition-colors"
+                                        className="text-xl font-sans hover:text-[#D4AF37] transition-colors"
                                     >
                                         info@cinestarevents.com.au
                                     </a>
@@ -176,7 +176,7 @@ const ContactSection = () => {
                                     <h3 className="text-[#D4AF37] uppercase tracking-widest text-xs font-bold mb-2">
                                         Location
                                     </h3>
-                                    <p className="text-xl font-[family-name:var(--font-space-grotesk)]">
+                                    <p className="text-xl font-sans">
                                         Sydney, Australia
                                     </p>
                                 </div>
@@ -214,7 +214,7 @@ const ContactSection = () => {
                                         name="name"
                                         value={formData.name}
                                         onChange={handleChange}
-                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-[family-name:var(--font-space-grotesk)] placeholder-white/20"
+                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-sans placeholder-white/20"
                                         placeholder="John Doe"
                                         required
                                     />
@@ -228,7 +228,7 @@ const ContactSection = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-[family-name:var(--font-space-grotesk)] placeholder-white/20"
+                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-sans placeholder-white/20"
                                         placeholder="john@example.com"
                                         required
                                     />
@@ -245,7 +245,7 @@ const ContactSection = () => {
                                         name="mobile"
                                         value={formData.mobile}
                                         onChange={handleChange}
-                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-[family-name:var(--font-space-grotesk)] placeholder-white/20"
+                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-sans placeholder-white/20"
                                         placeholder="+61 ..."
                                     />
                                 </div>
@@ -258,7 +258,7 @@ const ContactSection = () => {
                                         name="country"
                                         value={formData.country}
                                         onChange={handleChange}
-                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-[family-name:var(--font-space-grotesk)] placeholder-white/20"
+                                        className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-sans placeholder-white/20"
                                         placeholder="Australia"
                                     />
                                 </div>
@@ -273,7 +273,7 @@ const ContactSection = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     rows={4}
-                                    className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-[family-name:var(--font-space-grotesk)] placeholder-white/20 resize-none"
+                                    className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:border-[#D4AF37] outline-none transition-colors font-sans placeholder-white/20 resize-none"
                                     placeholder="Tell us about your project..."
                                     required
                                 />

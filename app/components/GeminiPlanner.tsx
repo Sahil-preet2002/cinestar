@@ -84,10 +84,10 @@ const GeminiPlanner = () => {
           <Sparkles className="w-4 h-4 text-yellow-500 mr-2" />
           <span className="text-yellow-500 text-xs font-bold uppercase tracking-widest">Powered by Gemini AI</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-oswald font-bold text-white uppercase mb-4">
+        <h2 className="text-3xl md:text-5xl font-sans font-bold text-white uppercase mb-4">
           Red Carpet <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-600">Planner</span>
         </h2>
-        <p className="text-gray-400 font-playfair italic">
+        <p className="text-gray-400 font-sans italic">
           Let our AI architect design your next blockbuster event.
         </p>
       </div>
@@ -101,7 +101,7 @@ const GeminiPlanner = () => {
             <button
               key={key}
               onClick={() => { setActiveTab(key); setResult(''); setInput(''); setError(''); }}
-              className={`flex-1 flex items-center justify-center py-4 px-6 min-w-[140px] transition-all duration-300 font-oswald uppercase tracking-wider text-sm ${
+              className={`flex-1 flex items-center justify-center py-4 px-6 min-w-[140px] transition-all duration-300 font-sans uppercase tracking-wider text-sm ${
                 activeTab === key 
                   ? 'bg-yellow-600/10 text-yellow-400 border-b-2 border-yellow-500' 
                   : 'text-gray-500 hover:text-white hover:bg-white/5'
@@ -117,12 +117,12 @@ const GeminiPlanner = () => {
         <div className="p-6 md:p-10 grid md:grid-cols-2 gap-8">
           
           <div className="flex flex-col space-y-4">
-             <label className="text-white font-oswald uppercase tracking-wide text-sm flex items-center">
+             <label className="text-white font-sans uppercase tracking-wide text-sm flex items-center">
                Describe your request
                <span className="ml-2 text-xs text-gray-500 normal-case font-sans">(Be as specific as you like)</span>
              </label>
              <textarea
-               className="w-full h-40 bg-black/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all resize-none placeholder-gray-600 font-playfair"
+               className="w-full h-40 bg-black/50 border border-white/10 rounded-xl p-4 text-white focus:outline-none focus:border-yellow-500/50 focus:ring-1 focus:ring-yellow-500/50 transition-all resize-none placeholder-gray-600 font-sans"
                placeholder={tools[activeTab].placeholder}
                value={input}
                onChange={(e) => setInput(e.target.value)}
@@ -130,7 +130,7 @@ const GeminiPlanner = () => {
              <button
               onClick={handleGenerate}
               disabled={loading || !input.trim()}
-              className="group relative w-full py-3 bg-gradient-to-r from-yellow-600 to-yellow-700 text-black font-oswald font-bold text-lg uppercase tracking-widest rounded-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all"
+              className="group relative w-full py-3 bg-gradient-to-r from-yellow-600 to-yellow-700 text-black font-sans font-bold text-lg uppercase tracking-widest rounded-lg overflow-hidden disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-all"
              >
                <div className="absolute inset-0 bg-white/20 group-hover:translate-x-full transition-transform duration-500 ease-out -skew-x-12"></div>
                <span className="relative flex items-center justify-center">
@@ -154,14 +154,14 @@ const GeminiPlanner = () => {
             {loading ? (
               <div className="flex-1 flex flex-col items-center justify-center text-gray-500 space-y-4">
                 <Sparkles className="w-8 h-8 text-yellow-500/50 animate-bounce" />
-                <p className="font-oswald tracking-widest animate-pulse">Consulting the Stars...</p>
+                <p className="font-sans tracking-widest animate-pulse">Consulting the Stars...</p>
               </div>
             ) : result ? (
               <div className="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                 <h4 className="text-yellow-500 font-oswald uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
+                 <h4 className="text-yellow-500 font-sans uppercase tracking-widest mb-4 border-b border-white/10 pb-2">
                    The Vision
                  </h4>
-                 <div className="prose prose-invert prose-sm max-w-none font-playfair text-gray-300 leading-relaxed whitespace-pre-wrap">
+                 <div className="prose prose-invert prose-sm max-w-none font-sans text-gray-300 leading-relaxed whitespace-pre-wrap">
                    {result}
                  </div>
               </div>
@@ -170,7 +170,7 @@ const GeminiPlanner = () => {
                  <div className="w-16 h-16 rounded-full border-2 border-dashed border-gray-700 flex items-center justify-center mb-4">
                    {tools[activeTab].icon}
                  </div>
-                 <p className="font-oswald uppercase tracking-widest text-sm">Your masterpiece awaits</p>
+                 <p className="font-sans uppercase tracking-widest text-sm">Your masterpiece awaits</p>
               </div>
             )}
           </div>

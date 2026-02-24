@@ -118,10 +118,10 @@ const AboutSection = () => {
                         <div className="inline-block border border-[#D4AF37] rounded-full px-4 py-1 mb-6 w-fit">
                             {/* <span className="text-[#D4AF37] uppercase tracking-[0.2em] text-xs font-bold">Cinestar Events</span> */}
                         </div>
-                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-[family-name:var(--font-syncopate)] text-white leading-tight mb-8">
+                        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-sans text-white leading-tight mb-8">
                             AUSTRALIA <br /> DESERVES <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFF5C3]">THE BEST</span>
                         </h1>
-                        <p className="text-white/60 font-[family-name:var(--font-space-grotesk)] max-w-md text-lg leading-relaxed">
+                        <p className="text-white/60 font-sans max-w-md text-lg leading-relaxed">
                             Experience the pioneer of Bollywood entertainment in Australia, New Zealand, and Fiji.
                         </p>
                         <div className="absolute bottom-10 right-10 hidden md:flex items-center gap-4 animate-pulse">
@@ -148,14 +148,14 @@ const AboutSection = () => {
                             </div>
 
                             <div className="relative z-10 h-full flex flex-col justify-center p-8 md:p-16">
-                                <span className="text-[#D4AF37] text-lg font-bold font-[family-name:var(--font-space-grotesk)] mb-2 block">
+                                <span className="text-[#D4AF37] text-lg font-bold font-sans mb-2 block">
                                     {item.year}
                                 </span>
-                                <h2 className="text-3xl md:text-5xl font-black font-[family-name:var(--font-syncopate)] text-white mb-6 uppercase">
+                                <h2 className="text-3xl md:text-5xl font-black font-sans text-white mb-6 uppercase">
                                     {item.title}
                                 </h2>
                                 <div className="w-20 h-[2px] bg-[#D4AF37] mb-8" />
-                                <p className="text-base md:text-lg text-white/80 font-[family-name:var(--font-space-grotesk)] leading-relaxed max-w-xl">
+                                <p className="text-base md:text-lg text-white/80 font-sans leading-relaxed max-w-xl">
                                     {item.desc}
                                 </p>
 
@@ -165,7 +165,7 @@ const AboutSection = () => {
                                     </a>
                                 )}
 
-                                <div className="absolute bottom-8 right-8 text-[8rem] font-black text-white/5 font-[family-name:var(--font-syncopate)] select-none pointer-events-none leading-none">
+                                <div className="absolute bottom-8 right-8 text-[8rem] font-black text-white/5 font-sans select-none pointer-events-none leading-none">
                                     {item.id}
                                 </div>
                             </div>

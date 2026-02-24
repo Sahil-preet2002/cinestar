@@ -42,27 +42,27 @@ const Navbar = () => {
   useEffect(() => {
     if (isMenuOpen) {
       // Creative entrance animation - scale and rotate from center
-      gsap.fromTo(menuRef.current, 
-        { 
+      gsap.fromTo(menuRef.current,
+        {
           scale: 0,
           rotation: -15,
           transformOrigin: "top right",
           opacity: 0
         },
-        { 
+        {
           scale: 1,
           rotation: 0,
           opacity: 1,
-          duration: 0.8, 
+          duration: 0.8,
           ease: "back.out(1.4)"
         }
       );
-      
+
       // Hamburger to X animation with bounce
       gsap.to(line1Ref.current, { rotation: 45, y: 8, duration: 0.4, ease: "back.out(2)" });
       gsap.to(line2Ref.current, { opacity: 0, scale: 0, duration: 0.3 });
       gsap.to(line3Ref.current, { rotation: -45, y: -8, duration: 0.4, ease: "back.out(2)" });
-      
+
       // Animate nav heading with typewriter effect
       const heading = menuRef.current?.querySelector('.menu-heading');
       if (heading) {
@@ -71,21 +71,21 @@ const Navbar = () => {
           { opacity: 1, y: 0, rotationX: 0, duration: 0.8, ease: "power3.out", delay: 0.2 }
         );
       }
-      
+
       // Animate nav links with creative stagger and 3D effect
       const navLinks = menuRef.current?.querySelectorAll('.menu-nav-link');
       if (navLinks) {
         gsap.fromTo(navLinks,
           { opacity: 0, y: 100, rotationY: -90, scale: 0.5 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            rotationY: 0, 
+          {
+            opacity: 1,
+            y: 0,
+            rotationY: 0,
             scale: 1,
-            duration: 0.7, 
-            stagger: 0.15, 
-            ease: "back.out(1.2)", 
-            delay: 0.4 
+            duration: 0.7,
+            stagger: 0.15,
+            ease: "back.out(1.2)",
+            delay: 0.4
           }
         );
       }
@@ -102,14 +102,14 @@ const Navbar = () => {
       if (contactItems) {
         gsap.fromTo(contactItems,
           { opacity: 0, x: 80, scale: 0.8 },
-          { 
-            opacity: 1, 
-            x: 0, 
+          {
+            opacity: 1,
+            x: 0,
             scale: 1,
-            duration: 0.6, 
-            stagger: 0.1, 
-            ease: "power2.out", 
-            delay: 0.8 
+            duration: 0.6,
+            stagger: 0.1,
+            ease: "power2.out",
+            delay: 0.8
           }
         );
       }
@@ -126,14 +126,14 @@ const Navbar = () => {
       if (socialIcons) {
         gsap.fromTo(socialIcons,
           { opacity: 0, scale: 0, rotation: -180 },
-          { 
-            opacity: 1, 
-            scale: 1, 
+          {
+            opacity: 1,
+            scale: 1,
             rotation: 0,
-            duration: 0.5, 
-            stagger: 0.1, 
-            ease: "back.out(2)", 
-            delay: 1.2 
+            duration: 0.5,
+            stagger: 0.1,
+            ease: "back.out(2)",
+            delay: 1.2
           }
         );
       }
@@ -148,15 +148,15 @@ const Navbar = () => {
       }
     } else {
       // Creative exit animation - scale down and rotate
-      gsap.to(menuRef.current, { 
+      gsap.to(menuRef.current, {
         scale: 0,
         rotation: 15,
         transformOrigin: "top right",
         opacity: 0,
-        duration: 0.5, 
-        ease: "back.in(1.7)" 
+        duration: 0.5,
+        ease: "back.in(1.7)"
       });
-      
+
       // Reset hamburger lines
       gsap.to(line1Ref.current, { rotation: 0, y: 0, duration: 0.3 });
       gsap.to(line2Ref.current, { opacity: 1, scale: 1, duration: 0.3 });
@@ -166,7 +166,7 @@ const Navbar = () => {
 
   useEffect(() => {
     // Logo entrance animation on mount
-    gsap.fromTo(logoRef.current, 
+    gsap.fromTo(logoRef.current,
       { opacity: 0, x: -30 },
       { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }
     );
@@ -197,9 +197,7 @@ const Navbar = () => {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
-        .font-oswald { font-family: 'Oswald', sans-serif; }
-        .font-playfair { font-family: 'Playfair Display', serif; }
+        /* Fonts are now handled globally */
         
         @keyframes glow-pulse {
           0%, 100% { 
@@ -259,66 +257,66 @@ const Navbar = () => {
 
 
       {/* Cross Navbar */}
-      <nav 
+      <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 w-full text-white px-6 md:px-12 lg:px-20 py-5 flex justify-between items-center z-[100] font-oswald tracking-wide transition-all duration-500 
+        className={`fixed top-0 left-0 right-0 w-full text-white px-6 md:px-12 lg:px-20 py-5 flex justify-between items-center z-[100] font-sans tracking-wide transition-all duration-500 
       
         `}
       >
-        
+
         {/* LOGO SECTION */}
         <Link href="/" className="flex-shrink-0 cursor-pointer group relative">
-          <div 
+          <div
             ref={logoRef}
             className="relative flex flex-col items-center hover:scale-110 transition-transform duration-300"
           >
-             <div className="flex items-center relative">
-                {/* Left stars */}
-                <div className="flex flex-col justify-end mr-1 pb-1 space-y-0.5 animate-pulse">
-                   <StarIcon size={6} className="text-yellow-500 fill-current" />
-                   <StarIcon size={4} className="text-yellow-600 fill-current ml-2" />
-                </div>
-                
-                {/* Main logo text */}
-                <div className="group/logo relative">
-                  <h1 className="text-4xl md:text-5xl font-bold uppercase leading-none tracking-tighter">
-                    <span className="bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent transition-all duration-300 group-hover/logo:from-yellow-100 group-hover/logo:via-yellow-300 group-hover/logo:to-yellow-500">
-                      Cine
-                    </span>
-                    <span className="text-yellow-400 mx-1 drop-shadow-lg group-hover/logo:text-yellow-300 transition-colors">|</span> 
-                    <span className="bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent transition-all duration-300 group-hover/logo:from-yellow-100 group-hover/logo:via-yellow-300 group-hover/logo:to-yellow-500">
-                      Star
-                    </span>
-                  </h1>
-                </div>
+            <div className="flex items-center relative">
+              {/* Left stars */}
+              <div className="flex flex-col justify-end mr-1 pb-1 space-y-0.5 animate-pulse">
+                <StarIcon size={6} className="text-yellow-500 fill-current" />
+                <StarIcon size={4} className="text-yellow-600 fill-current ml-2" />
+              </div>
 
-                {/* Right stars */}
-                <div className="flex flex-col justify-end ml-1 pb-1 space-y-0.5">
-                   <StarIcon size={6} className="text-yellow-500 fill-current" />
-                   <StarIcon size={4} className="text-yellow-600 fill-current mr-2" />
-                </div>
-             </div>
+              {/* Main logo text */}
+              <div className="group/logo relative">
+                <h1 className="text-4xl md:text-5xl font-bold uppercase leading-none tracking-tighter">
+                  <span className="bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent transition-all duration-300 group-hover/logo:from-yellow-100 group-hover/logo:via-yellow-300 group-hover/logo:to-yellow-500">
+                    Cine
+                  </span>
+                  <span className="text-yellow-400 mx-1 drop-shadow-lg group-hover/logo:text-yellow-300 transition-colors">|</span>
+                  <span className="bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent transition-all duration-300 group-hover/logo:from-yellow-100 group-hover/logo:via-yellow-300 group-hover/logo:to-yellow-500">
+                    Star
+                  </span>
+                </h1>
+              </div>
 
-             {/* Subtitle with glow effect */}
-             <span className="text-[10px] md:text-xs tracking-[0.4em] text-yellow-300 uppercase font-light mt-1 opacity-80 group-hover:opacity-100 group-hover:text-yellow-200 transition-all">
-               Events
-             </span>
+              {/* Right stars */}
+              <div className="flex flex-col justify-end ml-1 pb-1 space-y-0.5">
+                <StarIcon size={6} className="text-yellow-500 fill-current" />
+                <StarIcon size={4} className="text-yellow-600 fill-current mr-2" />
+              </div>
+            </div>
 
-             {/* Glow background on hover */}
-             <div className="absolute -inset-6 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 rounded-lg opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300 blur" />
+            {/* Subtitle with glow effect */}
+            <span className="text-[10px] md:text-xs tracking-[0.4em] text-yellow-300 uppercase font-light mt-1 opacity-80 group-hover:opacity-100 group-hover:text-yellow-200 transition-all">
+              Events
+            </span>
+
+            {/* Glow background on hover */}
+            <div className="absolute -inset-6 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 rounded-lg opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300 blur" />
           </div>
         </Link>
 
         {/* DESKTOP NAVIGATION - Hidden on mobile */}
-     
+
 
         {/* RIGHT SECTION - Book Tickets + Menu Toggle */}
         <div className="flex items-center gap-4">
           {/* Book Tickets Button - Hidden on mobile */}
-    
+
 
           {/* MENU TOGGLE */}
-          <button 
+          <button
             ref={menuButtonRef}
             className="text-white menu-button-glow z-[110] relative group cursor-pointer"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -335,7 +333,7 @@ const Navbar = () => {
       </nav>
 
       {/* Sidebar Menu */}
-      <div 
+      <div
         ref={menuRef}
         className="fixed top-0 right-0 w-full h-screen bg-gradient-to-b from-black/98 via-black/95 to-black/98 backdrop-blur-xl z-[105] border-l border-yellow-500/30 flex flex-col md:flex-row overflow-y-auto md:overflow-y-visible opacity-0 scale-0"
         style={{ transformOrigin: 'top right' }}
@@ -350,13 +348,13 @@ const Navbar = () => {
 
         {/* LEFT SECTION - Navigation */}
         <div className="w-full md:w-1/2 flex flex-col pt-32 md:pt-16 px-8 md:px-12 py-12 border-b md:border-b-0 md:border-r border-yellow-500/20">
-          
+
           {/* Menu Logo/Branding */}
           <div className="menu-heading mb-16 md:mb-20">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-12 h-1 bg-gradient-to-r from-yellow-500 to-yellow-600"></div>
             </div>
-            <h2 className="text-white text-3xl md:text-4xl font-oswald font-bold uppercase tracking-widest">
+            <h2 className="text-white text-3xl md:text-4xl font-sans font-bold uppercase tracking-widest">
               Menu
             </h2>
           </div>
@@ -369,7 +367,7 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
                 className="menu-nav-link group block relative overflow-hidden cursor-pointer"
               >
-                <FlipLink 
+                <FlipLink
                   href={link.href}
                 >
                   {link.name}
@@ -400,10 +398,10 @@ const Navbar = () => {
 
         {/* RIGHT SECTION - Contact & Info (Hidden on mobile) */}
         <div className="hidden md:flex w-1/2 flex-col px-12 pt-16 pb-12 justify-between">
-          
+
           {/* Contact Information */}
           <div>
-            <h3 className="contact-heading text-white text-2xl font-oswald font-bold uppercase tracking-widest mb-12">
+            <h3 className="contact-heading text-white text-2xl font-sans font-bold uppercase tracking-widest mb-12">
               Contact<span className="block text-yellow-400">Information</span>
             </h3>
 
@@ -454,7 +452,7 @@ const Navbar = () => {
           {/* Follow Us & Button */}
           <div className="space-y-8">
             <div>
-              <h4 className="follow-heading text-white text-xl font-oswald font-bold uppercase tracking-widest mb-8">Follow Us</h4>
+              <h4 className="follow-heading text-white text-xl font-sans font-bold uppercase tracking-widest mb-8">Follow Us</h4>
               <div className="flex items-center gap-10">
                 {socialtLinks.map((link, index) => {
                   const IconComponent = link.icon;
@@ -473,7 +471,7 @@ const Navbar = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="book-btn-menu w-full px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-oswald font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/50 text-lg">
+            <button className="book-btn-menu w-full px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-sans font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/50 text-lg">
               Book an Event →
             </button>
           </div>
@@ -482,7 +480,7 @@ const Navbar = () => {
 
       {/* Overlay */}
       {isMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[95] transition-opacity duration-300"
           onClick={() => setIsMenuOpen(false)}
           style={{
@@ -502,10 +500,10 @@ const Navbar = () => {
 };
 
 const StarIcon = ({ size = 20, className = "" }) => (
-  <svg 
-    width={size} 
-    height={size} 
-    viewBox="0 0 24 24" 
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
     className={className}
     stroke="currentColor"
     strokeWidth="0"

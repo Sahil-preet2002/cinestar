@@ -6,7 +6,6 @@
 
     background-color: var(--black);
     color: var(--white);
-    font-family: var(--font-space-grotesk), sans-serif;
     overflow: hidden;
     height: 100vh;
     width: 100%;
@@ -15,15 +14,7 @@
     /* Hide default cursor */
 }
 
-/* Use Next.js font variables */
-.syncopate {
-    font-family: var(--font-syncopate), sans-serif;
-}
-
-.cormorant {
-    font-family: var(--font-cormorant-garamond), serif;
-}
-
+/* Removed Next.js font classes */
 /* Fullscreen Slide Container */
 .sliderWrap {
     position: relative;
@@ -246,7 +237,6 @@
     transition: all 0.4s ease;
     cursor: pointer;
     position: relative;
-    font-family: var(--font-space-grotesk), sans-serif;
 }
 
 .artistTabBtn::after {

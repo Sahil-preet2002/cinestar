@@ -83,10 +83,10 @@ export const PremiumGallery = () => {
                     viewport={{ once: true }}
                     className="flex flex-col items-center text-center"
                 >
-                    <span className="text-[#D4AF37] tracking-[0.4em] uppercase text-sm font-[family-name:var(--font-space-grotesk)] mb-4">
+                    <span className="text-[#D4AF37] tracking-[0.4em] uppercase text-sm font-sans mb-4">
                         Visual Legacy
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-bold font-[family-name:var(--font-syncopate)] text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D4AF37] to-white">
+                    <h2 className="text-4xl md:text-6xl font-bold font-sans text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D4AF37] to-white">
                         CAPTURING MOMENTS
                     </h2>
                     <div className="w-24 h-[1px] bg-[#D4AF37] mt-8 opacity-60"></div>
@@ -148,10 +148,10 @@ const GalleryCard = ({ item, idx, translate }: { item: any, idx: number, transla
 
             {/* Overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                <span className="text-[#D4AF37] text-xs font-[family-name:var(--font-space-grotesk)] tracking-widest uppercase mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                <span className="text-[#D4AF37] text-xs font-sans tracking-widest uppercase mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
                     {item.year}
                 </span>
-                <h3 className="text-white text-xl font-[family-name:var(--font-syncopate)] font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <h3 className="text-white text-xl font-sans font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                     {item.title}
                 </h3>
             </div>

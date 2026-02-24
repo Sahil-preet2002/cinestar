@@ -178,10 +178,10 @@ const Footer = () => {
             {/* Glow effect behind text */}
             <div className="absolute inset-0 bg-[#D4AF37] blur-[80px] opacity-20" />
 
-            <h1 className="text-[12vw] md:text-[5rem] font-bold tracking-tighter leading-none font-[family-name:var(--font-syncopate)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5C3] to-[#D4AF37] drop-shadow-2xl">
+            <h1 className="text-[12vw] md:text-[5rem] font-bold tracking-tighter leading-none font-sans text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5C3] to-[#D4AF37] drop-shadow-2xl">
               CINESTAR
             </h1>
-            <span className="text-xl md:text-2xl tracking-[0.6em] text-[#D4AF37] font-[family-name:var(--font-space-grotesk)] font-light mt-[-10px] block">
+            <span className="text-xl md:text-2xl tracking-[0.6em] text-[#D4AF37] font-sans font-light mt-[-10px] block">
               EVENTS
             </span>
           </motion.div>
@@ -193,7 +193,7 @@ const Footer = () => {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm md:text-base tracking-[0.2em] text-white/70 hover:text-[#D4AF37] transition-colors duration-300 font-[family-name:var(--font-space-grotesk)] relative group"
+              className="text-sm md:text-base tracking-[0.2em] text-white/70 hover:text-[#D4AF37] transition-colors duration-300 font-sans relative group"
             >
               {link.name}
               <span className="absolute -bottom-2 left-0 w-0 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
@@ -205,7 +205,7 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-4 mt-4">
           <Link
             href="mailto:info@cinestarevents.com.au"
-            className="text-lg md:text-xl text-white hover:text-[#D4AF37] transition-colors duration-300 font-[family-name:var(--font-space-grotesk)] flex items-center gap-2"
+            className="text-lg md:text-xl text-white hover:text-[#D4AF37] transition-colors duration-300 font-sans flex items-center gap-2"
           >
 
             info@cinestarevents.com.au
@@ -232,7 +232,7 @@ const Footer = () => {
       </motion.div>
 
       {/* Copyright */}
-      <div className="relative z-10 mt-16 text-xs text-white/30 tracking-widest uppercase font-[family-name:var(--font-space-grotesk)]">
+      <div className="relative z-10 mt-16 text-xs text-white/30 tracking-widest uppercase font-sans">
         © {new Date().getFullYear()} Cinestar Events. All Rights Reserved.
       </div>
     </footer>

@@ -15,7 +15,7 @@ const artists = [
 export default function ArtistShowcase() {
   const [current, setCurrent] = useState(0);
   const isAnimating = useRef(false);
-  
+
   const cursorRef = useRef<HTMLDivElement>(null);
   const followerRef = useRef<HTMLDivElement>(null);
   const glow1Ref = useRef<HTMLDivElement>(null);
@@ -70,10 +70,10 @@ export default function ArtistShowcase() {
       }
     });
 
-    tl.to("#a-name-top, #a-name-bottom, #a-tour", { 
-      y: 50, 
-      opacity: 0, 
-      duration: 0.4, 
+    tl.to("#a-name-top, #a-name-bottom, #a-tour", {
+      y: 50,
+      opacity: 0,
+      duration: 0.4,
       ease: "power2.in",
       onComplete: () => setCurrent(index)
     });
@@ -97,10 +97,11 @@ export default function ArtistShowcase() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-between py-6 md:py-10 bg-[#080808] text-white relative overflow-x-hidden md:overflow-hidden font-[Montserrat] select-none">
-      
-      <style dangerouslySetInnerHTML={{ __html: `
-        .marcellus { font-family: 'Marcellus', serif; }
+    <div className="min-h-screen w-full flex flex-col items-center justify-between py-6 md:py-10 bg-[#080808] text-white relative overflow-x-hidden md:overflow-hidden select-none">
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        /* Font overrides removed */
         .artist-bg {
           position: absolute;
           inset: 0;
@@ -127,7 +128,7 @@ export default function ArtistShowcase() {
 
       <div ref={bgContainerRef} className="absolute inset-0 z-0">
         {artists.map((artist, i) => (
-          <div 
+          <div
             key={i}
             className={`artist-bg ${current === i ? 'active' : ''}`}
             style={{ backgroundImage: `url(${artist.img})` }}
@@ -163,14 +164,14 @@ export default function ArtistShowcase() {
       </div>
 
       <div className="relative z-50 w-full max-w-5xl px-4 md:px-6 flex-shrink-0 mt-4">
-        <div 
+        <div
           ref={navRef}
           onMouseMove={handleNavMove}
           onMouseLeave={handleNavLeave}
           className="glass-nav flex items-center justify-start md:justify-center overflow-x-auto no-scrollbar relative w-full mb-6 bg-white/5 backdrop-blur-[20px] border border-white/10 rounded-full p-1"
         >
           {artists.map((artist, i) => (
-            <div 
+            <div
               key={i}
               onClick={() => switchArtist(i)}
               className={`tab-item relative z-[2] px-[18px] py-[10px] md:px-[24px] md:py-[12px] text-[0.65rem] md:text-[0.75rem] font-bold tracking-[1.5px] uppercase cursor-pointer transition-colors duration-500 whitespace-nowrap ${current === i ? 'active text-[#080808]' : 'text-white/50'}`}
@@ -180,13 +181,13 @@ export default function ArtistShowcase() {
           ))}
           <div ref={indicatorRef} id="tab-indicator" className="absolute top-[4px] left-[4px] h-[calc(100%-8px)] bg-[#D4AF37] rounded-full z-[1] pointer-events-none" />
         </div>
-        
+
         <div className="flex flex-col md:flex-row justify-between items-center md:items-end space-y-4 md:space-y-0 pb-4">
           <div className="text-center md:text-left">
             <p className="text-[9px] md:text-[10px] tracking-widest opacity-40 uppercase mb-1">Location</p>
             <p className="text-xs md:text-sm font-bold">{artists[current].loc}</p>
           </div>
-          
+
           <div className="flex space-x-6 md:space-x-8">
             <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] border-b border-[#D4AF37] pb-1 transition-all hover:text-[#D4AF37]">Gallery</button>
             <button className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] border-b border-white/20 pb-1 transition-all hover:border-white">About Tour</button>
