@@ -54,19 +54,19 @@ function FrameComponent({
 
     return (
         <div
-            className={`relative ${className}`}
+            className={`group relative ${className}`}
             style={{
                 width,
                 height,
-                transition: "width 0.3s ease-in-out, height 0.3s ease-in-out",
+                transition: "width 0.5s cubic-bezier(0.22, 1, 0.36, 1), height 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
         >
-            <div className="relative w-full h-full overflow-hidden bg-[#000] border border-[#050505] group-hover:border-[#D4AF37] transition-colors duration-500">
+            <div className="relative w-full h-full overflow-hidden bg-[#0A0A0A] rounded-xl transition-all duration-700 ease-out z-10 group-hover:z-20 border border-white/5 group-hover:border-[#D4AF37]/40 shadow-[0_10px_30px_rgba(0,0,0,0.5)] group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),_0_0_30px_rgba(212,175,55,0.15)]">
                 <div
-                    className="absolute inset-0 flex items-center justify-center"
+                    className="absolute inset-0 flex items-center justify-center pointer-events-none"
                     style={{
                         zIndex: 1,
-                        transition: "all 0.3s ease-in-out",
+                        transition: "all 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
                         padding: showFrame ? `${borderThickness}px` : "0",
                         width: showFrame ? `${borderSize}%` : "100%",
                         height: showFrame ? `${borderSize}%` : "100%",
@@ -75,22 +75,26 @@ function FrameComponent({
                     }}
                 >
                     <div
-                        className="w-full h-full overflow-hidden relative"
+                        className="w-full h-full overflow-hidden relative pointer-events-auto"
                         style={{
                             transform: `scale(${mediaSize})`,
                             transformOrigin: "center",
-                            transition: "transform 0.3s ease-in-out",
+                            transition: "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)",
                         }}
                     >
                         {frame.type === 'video' && frame.src && (
-                            <video
-                                className="w-full h-full object-cover"
-                                src={frame.src}
-                                loop
-                                muted
-                                playsInline
-                                ref={videoRef}
-                            />
+                            <div className="relative w-full h-full">
+                                <video
+                                    className="w-full h-full object-cover scale-[1.02] group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
+                                    src={frame.src}
+                                    loop
+                                    muted
+                                    playsInline
+                                    ref={videoRef}
+                                />
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_30%,rgba(0,0,0,0.4)_100%)] pointer-events-none" />
+                                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 ease-out pointer-events-none" />
+                            </div>
                         )}
 
                         {frame.type === 'image' && frame.src && (
@@ -99,20 +103,25 @@ function FrameComponent({
                                     src={frame.src}
                                     alt="Event Gallery"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover scale-[1.02] group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_40%,rgba(0,0,0,0.7)_100%)] pointer-events-none" />
+                                <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-700 ease-out pointer-events-none" />
                             </div>
                         )}
 
                         {frame.type === 'text' && frame.content && (
-                            <div className="w-full h-full flex flex-col justify-center items-center p-6 text-center bg-[#111] border border-[#D4AF37]/10">
-                                <h3 className="text-xl md:text-2xl font-bold font-sans text-[#D4AF37] mb-4 uppercase tracking-wider">
+                            <div className="w-full h-full flex flex-col justify-center items-center p-8 md:p-12 text-center bg-gradient-to-br from-[#111] to-[#050505] border border-white/5 group-hover:border-[#D4AF37]/20 transition-colors duration-700">
+                                <h3 className="text-2xl md:text-3xl lg:text-4xl font-black font-sans text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5C3] to-[#D4AF37] mb-6 uppercase tracking-[0.2em] transform group-hover:scale-105 transition-transform duration-500 ease-out">
                                     {frame.content.title}
                                 </h3>
-                                <p className="text-white/70 font-sans text-sm md:text-base leading-relaxed">
-                                    {frame.content.desc}
-                                </p>
+                                <div className="relative max-w-lg">
+                                    <span className="absolute -top-6 -left-6 text-5xl text-[#D4AF37]/10 font-serif leading-none">"</span>
+                                    <p className="text-white/60 font-sans text-sm md:text-base leading-[1.8] tracking-widest uppercase font-medium">
+                                        {frame.content.desc}
+                                    </p>
+                                    <span className="absolute -bottom-8 -right-4 text-5xl text-[#D4AF37]/10 font-serif leading-none">"</span>
+                                </div>
                             </div>
                         )}
                     </div>
@@ -167,7 +176,7 @@ export function DynamicFrameLayout({
                 gridTemplateRows: getRowSizes(),
                 gridTemplateColumns: getColSizes(),
                 gap: `${gapSize}px`,
-                transition: "grid-template-rows 0.4s ease, grid-template-columns 0.4s ease",
+                transition: "grid-template-rows 0.6s cubic-bezier(0.22, 1, 0.36, 1), grid-template-columns 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
             }}
         >
             {frames.map((frame) => {
@@ -181,7 +190,7 @@ export function DynamicFrameLayout({
                         className="relative"
                         style={{
                             transformOrigin,
-                            transition: "transform 0.4s ease",
+                            transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
                         }}
                         onMouseEnter={() => setHovered({ row, col })}
                         onMouseLeave={() => setHovered(null)}

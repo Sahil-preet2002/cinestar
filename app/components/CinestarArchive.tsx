@@ -341,7 +341,7 @@ export default function CinestarArchive() {
 
 
     return (
-        <div className={styles.container} ref={containerRef}>
+        <div className={styles.container} ref={containerRef} id="archive">
             <div className={styles.noise}></div>
             <div className={styles.cursor} ref={cursorRef} id="cursor"></div>
 

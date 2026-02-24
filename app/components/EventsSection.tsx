@@ -1,201 +1,107 @@
 "use client";
 
-import React, { useState } from "react";
-import { DynamicFrameLayout, Frame } from "./ui/dynamic-frame-layout";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { eventArtists } from "@/lib/events-data";
 
-// --- Data for SONU NIGAM (Specific Content) ---
-const sonuFrames: Frame[] = [
-    {
-        id: 1,
-        type: 'text',
-        content: {
-            title: "SONU NIGAM",
-            desc: "Cinestar Events has a long and rich association with the multi-talented Sonu Nigam – a singer par excellence and a great human being. We have brought Sonu Nigam to Australia, New Zealand and Fiji on two occasions – each concert was a sellout show at every venue."
-        },
-        defaultPos: { x: 0, y: 0, w: 8, h: 4 }, // Wide text block
-    },
-    {
-        id: 2,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1516280440614-6697288d5d38?auto=format&fit=crop&q=80&w=1000", // Placeholder for Green singing shot
-        defaultPos: { x: 8, y: 0, w: 4, h: 4 },
-    },
-    {
-        id: 3,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1493225255756-d9584f8606e9?auto=format&fit=crop&q=80&w=1000", // Red background vibe
-        defaultPos: { x: 0, y: 4, w: 4, h: 4 },
-    },
-    {
-        id: 4,
-        type: 'text',
-        content: {
-            title: "THE LEGEND",
-            desc: "Offering a heady mix of soulful and masti, phenomenal singing and loads of entertainment, Sonu Nigam is truly a darling of music lovers in Australia and New Zealand. His singing abilities are second to none and his natural flair for connecting with people makes him a one-man entertainment show!"
-        },
-        defaultPos: { x: 4, y: 4, w: 8, h: 4 },
-    },
-    {
-        id: 5,
-        type: 'text',
-        content: {
-            title: "HE CONQUERED HEARTS",
-            desc: "\"He Came, He Dazzled, He Conquered Hearts\""
-        },
-        defaultPos: { x: 0, y: 8, w: 4, h: 4 },
-    },
-    {
-        id: 6,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1000", // Blue light singing
-        defaultPos: { x: 4, y: 8, w: 4, h: 4 },
-    },
-    {
-        id: 7,
-        type: 'video',
-        src: "https://static.cdn-luma.com/files/58ab7363888153e3/Logo%20Exported.mp4",
-        defaultPos: { x: 8, y: 8, w: 4, h: 4 },
-    },
-];
-
-// --- Generic Data Generator for other Artists ---
-const generateGenericFrames = (artistName: string): Frame[] => [
-    {
-        id: 101,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&q=80&w=1000",
-        defaultPos: { x: 0, y: 0, w: 4, h: 4 },
-    },
-    {
-        id: 102,
-        type: 'text',
-        content: {
-            title: artistName,
-            desc: `Experience the magical performance of ${artistName} live in concert. A night of unforgettable melodies and entertainment.`
-        },
-        defaultPos: { x: 4, y: 0, w: 8, h: 4 },
-    },
-    {
-        id: 103,
-        type: 'video',
-        src: "https://static.cdn-luma.com/files/58ab7363888153e3/Animation%20Exported%20(4).mp4",
-        defaultPos: { x: 0, y: 4, w: 4, h: 4 },
-    },
-    {
-        id: 104,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?auto=format&fit=crop&q=80&w=1000",
-        defaultPos: { x: 4, y: 4, w: 4, h: 4 },
-    },
-    {
-        id: 105,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=1000",
-        defaultPos: { x: 8, y: 4, w: 4, h: 4 },
-    },
-    {
-        id: 106,
-        type: 'text',
-        content: { title: "Sold Out", desc: "Multiple cities, thousands of fans." },
-        defaultPos: { x: 0, y: 8, w: 4, h: 4 },
-    },
-    {
-        id: 107,
-        type: 'image',
-        src: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=1000",
-        defaultPos: { x: 4, y: 8, w: 8, h: 4 },
-    },
-];
-
-const Tabs = [
-    "Sonu Nigam",
-    "Kapil Sharma",
-    "Dabangg Tour",
-    "Shreya Ghosal",
-    "Jagjit Singh",
-    "Adnan Sami",
-    "Asha Bhosle",
-    "Rahat Fateh Ali Khan",
-    "Mika Singh"
-];
-
-const EventsSection = () => {
-    const [activeTab, setActiveTab] = useState("Sonu Nigam");
-
-    const getActiveFrames = () => {
-        if (activeTab === "Sonu Nigam") {
-            return sonuFrames;
-        }
-        return generateGenericFrames(activeTab);
-    };
-
+export const EventsSection = () => {
     return (
-        <div className="min-h-screen bg-[#050505] text-white py-24 px-4 md:px-12 flex flex-col items-center">
-            {/* Header with Floating Tabs */}
-            <div className="w-full max-w-7xl mb-12 flex flex-col items-center z-10">
-                <div className="text-center mb-8">
-                    <div className="inline-block border border-[#D4AF37] rounded-full px-4 py-1 mb-6">
-                        <span className="text-[#D4AF37] uppercase tracking-[0.2em] text-xs font-bold">
-                            Hall of Fame
+        <section className="relative w-full bg-[#050000] text-[#F5F5F7] min-h-screen pb-24 font-sans selection:bg-[#D4AF37] selection:text-black overflow-hidden border-t-[4px] border-[#D4AF37]">
+            {/* Grand Premiere Ambient Background */}
+            <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-[1000px] bg-[radial-gradient(ellipse_at_top,_#D4AF3715_0%,_#80000010_40%,_transparent_70%)]" />
+                <div className="absolute inset-0 bg-[url('/noise.png')] opacity-[0.04] mix-blend-overlay" />
+            </div>
+
+            {/* Header / Title */}
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 pt-24 md:pt-32 pb-16 text-center">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                    <div className="inline-block border-y-2 border-[#D4AF37] py-2 mb-8">
+                        <span className="text-[#D4AF37] text-sm md:text-base font-bold tracking-[0.4em] uppercase px-8">
+                            Star Cast & Upcoming Shows
                         </span>
                     </div>
-                    <h1 className="text-4xl md:text-6xl font-black font-sans uppercase">
-                        Star <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#FFF5C3]">Performers</span>
-                    </h1>
-                </div>
-
-                {/* Glassmorphism Floating Tabs */}
-                <div className="relative w-full overflow-x-auto no-scrollbar pb-4 md:pb-0">
-                    <div className="flex justify-start md:justify-center items-center gap-2 md:gap-4 px-4 min-w-max">
-                        {Tabs.map((tab) => (
-                            <button
-                                key={tab}
-                                onClick={() => setActiveTab(tab)}
-                                className={`relative px-6 py-3 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest transition-all duration-300 ${activeTab === tab
-                                        ? "text-black"
-                                        : "text-white/60 hover:text-[#D4AF37] hover:bg-[#D4AF37]/5"
-                                    }`}
-                            >
-                                <span className="relative z-10">{tab}</span>
-                                {activeTab === tab && (
-                                    <motion.div
-                                        layoutId="activeTabPill"
-                                        className="absolute inset-0 bg-[#D4AF37] rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)]"
-                                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                    />
-                                )}
-                            </button>
-                        ))}
-                    </div>
-                </div>
+                    <h2 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter drop-shadow-[0_10px_30px_rgba(212,175,55,0.2)]">
+                        Grand <span className="text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5C3] via-[#D4AF37] to-[#8C7320]">Premiere</span>
+                    </h2>
+                    <p className="mt-6 text-white/60 max-w-2xl mx-auto font-serif italic md:text-xl">
+                        Experience the grandeur of Indian cinema and legendary live performances. Don't miss the biggest blockbuster events of the year.
+                    </p>
+                </motion.div>
             </div>
 
-            {/* Grid Content */}
-            <div className="w-full max-w-[1600px] mb-20 relative px-2 md:px-0">
-                <div className="w-full aspect-square md:aspect-[16/9] lg:aspect-[2.35/1] relative">
-                    <div className="w-full h-full border border-[#D4AF37]/10 p-2 md:p-4 rounded-sm bg-[#080808]">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={activeTab}
-                                initial={{ opacity: 0, scale: 0.98 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.98 }}
-                                transition={{ duration: 0.4, ease: "circOut" }}
-                                className="w-full h-full absolute inset-0 p-2 md:p-4"
-                            >
-                                <DynamicFrameLayout
-                                    frames={getActiveFrames()}
-                                    className="w-full h-full"
-                                    hoverSize={6}
-                                    gapSize={8}
+            {/* "Movie Poster" Grid */}
+            <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {eventArtists.map((artist, index) => (
+                    <motion.div
+                        key={artist.id}
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+                        className="group relative"
+                    >
+                        <Link href={`/events/${artist.id}`} className="block w-full outline-none">
+                            {/* Poster Frame */}
+                            <div className="relative w-full aspect-[2/3] md:aspect-[3/4] rounded-sm overflow-hidden border-[3px] border-[#D4AF37]/30 group-hover:border-[#D4AF37] shadow-[0_20px_50px_rgba(0,0,0,0.8)] transition-all duration-500 transform group-hover:-translate-y-2 group-hover:shadow-[0_30px_60px_rgba(212,175,55,0.15)] bg-[#111]">
+
+                                {/* Inner gold rim */}
+                                <div className="absolute inset-2 border border-[#D4AF37]/10 group-hover:border-[#D4AF37]/40 z-20 pointer-events-none transition-colors duration-500" />
+
+                                <Image
+                                    src={artist.imgSrc}
+                                    alt={artist.name}
+                                    fill
+                                    className="object-cover scale-100 group-hover:scale-110 transition-transform duration-[1.5s] ease-[cubic-bezier(0.25,1,0.5,1)]"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                 />
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-                </div>
+
+                                {/* Red cinematic gradient overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#2A0000] via-[#800000]/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 z-10" />
+
+                                {/* Content at the bottom of the poster */}
+                                <div className="absolute bottom-0 left-0 w-full p-6 z-20 flex flex-col justify-end h-full">
+                                    <h3 className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-[#D4AF37] uppercase tracking-tight mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                        {artist.name}
+                                    </h3>
+                                    <p className="text-[#D4AF37] text-xs font-bold uppercase tracking-[0.2em] mb-4 transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-75">
+                                        {artist.date} | {artist.location}
+                                    </p>
+
+                                    {/* Action Button hidden initially */}
+                                    <div className="overflow-hidden mt-2">
+                                        <div className="transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                                            <span className="inline-block px-6 py-2 bg-[#D4AF37] text-black text-xs font-bold uppercase tracking-widest hover:bg-white transition-colors duration-300">
+                                                Book Tickets
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* "Video Included" Badge */}
+                                {artist.videoUrl && (
+                                    <div className="absolute top-4 right-4 z-20 bg-black/50 backdrop-blur-md px-3 py-1 rounded-sm border border-[#D4AF37]/50 shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+                                        <span className="text-[#D4AF37] text-[10px] uppercase font-bold tracking-widest flex items-center gap-2">
+                                            <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+                                            Video Trailer
+                                        </span>
+                                    </div>
+                                )}
+                            </div>
+                        </Link>
+                    </motion.div>
+                ))}
             </div>
-        </div>
+
+
+        </section>
     );
 };
 
