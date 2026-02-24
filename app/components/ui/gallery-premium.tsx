@@ -1,162 +1,122 @@
 "use client";
 
-import { useScroll, useTransform, motion } from "framer-motion";
-import { useRef } from "react";
-import Image from "next/image";
-import clsx from "clsx";
+import {
+    GridBody,
+    DraggableContainer,
+    GridItem,
+} from "@/app/components/ui/infinite-drag-scroll";
 
-const galleryImages = [
+const images = [
     {
-        src: "https://images.unsplash.com/photo-1533174072545-e8d4aa97edf9?auto=format&fit=crop&q=80&w=1200",
-        title: "Star Night 2024",
-        year: "2024",
+        id: 1,
+        alt: "Silhouette of a traditional Japanese pagoda at sunset",
+        src: "https://images.unsplash.com/photo-1512692723619-8b3e68365c9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1514525253361-bee8a19740c1?auto=format&fit=crop&q=80&w=1200",
-        title: "Live in Sydney",
-        year: "2023",
+        id: 2,
+        alt: "Himeji Castle on a clear day",
+        src: "https://images.unsplash.com/photo-1491884662610-dfcd28f30cfb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?auto=format&fit=crop&q=80&w=1200",
-        title: "Awards Gala",
-        year: "2023",
+        id: 3,
+        alt: "Red Car",
+        src: "https://images.unsplash.com/photo-1536901766856-5d45744cd180?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTA2fHxqYXBhbnxlbnwwfDF8MHx8fDA%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=1200",
-        title: "Music Festival",
-        year: "2022",
+        id: 4,
+        alt: "Woman in kimono standing beside a traditional Japanese house",
+        src: "https://images.unsplash.com/photo-1505069446780-4ef442b5207f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=1200",
-        title: "The Grand Stage",
-        year: "2022",
+        id: 5,
+        alt: "Group of men in black suits inside a hallway",
+        src: "https://images.unsplash.com/photo-1554797589-7241bb691973?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&q=80&w=1200",
-        title: "VIP Lounge",
-        year: "2021",
+        id: 6,
+        alt: "Crowd walking through a street decorated with red lanterns",
+        src: "https://images.unsplash.com/photo-1596713109885-c94bdfd7f19d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1506157786151-b8491531f436?auto=format&fit=crop&q=80&w=1200",
-        title: "Backstage Pass",
-        year: "2021",
+        id: 7,
+        alt: "Timelapse of traffic lights and buildings at night",
+        src: "https://images.unsplash.com/photo-1498036882173-b41c28a8ba34?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=1200",
-        title: "Fan Meet",
-        year: "2020",
+        id: 8,
+        alt: "Close-up of orange and black wooden torii gate posts",
+        src: "https://images.unsplash.com/photo-1585028281328-54ec883cd7cf?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
-        src: "https://images.unsplash.com/photo-1459749411177-287ce35e8b7f?auto=format&fit=crop&q=80&w=1200",
-        title: "Red Carpet",
-        year: "2019",
+        id: 9,
+        alt: "Historic building with brown and white stone exterior in daylight",
+        src: "https://images.unsplash.com/photo-1614003024056-e3ecbf8888f7?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 10,
+        alt: "Lantern glowing on a quiet street at night",
+        src: "https://images.unsplash.com/photo-1573455494057-12684d151bf4?q=80&w=1924&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 11,
+        alt: "View of Osaka Castle with clear sky backdrop",
+        src: "https://images.unsplash.com/photo-1575489129683-4f7d23379975?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 12,
+        alt: "Pagoda silhouetted during golden hour",
+        src: "https://images.unsplash.com/photo-1512692723619-8b3e68365c9c?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 13,
+        alt: "Himeji Castle seen from a distance",
+        src: "https://images.unsplash.com/photo-1491884662610-dfcd28f30cfb?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 14,
+        alt: "Torii gate pillars in vibrant orange and black",
+        src: "https://images.unsplash.com/photo-1585028281328-54ec883cd7cf?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 15,
+        alt: "Traditional Japanese home under daylight",
+        src: "https://images.unsplash.com/photo-1505069446780-4ef442b5207f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 16,
+        alt: "Women wearing kimono beside wooden house",
+        src: "https://images.unsplash.com/photo-1505069446780-4ef442b5207f?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 17,
+        alt: "People passing under hanging red lanterns at dusk",
+        src: "https://images.unsplash.com/photo-1596713109885-c94bdfd7f19d?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    },
+    {
+        id: 18,
+        alt: "Stepping stone path winding through lush forest",
+        src: "https://plus.unsplash.com/premium_photo-1673285285994-6bfff235db97?q=80&w=1936&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
 ];
 
-export const PremiumGallery = () => {
-    const gridRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: gridRef,
-        offset: ["start end", "end start"],
-    });
-
-    const translateFirst = useTransform(scrollYProgress, [0, 1], [0, -100]);
-    const translateSecond = useTransform(scrollYProgress, [0, 1], [0, 100]);
-    const translateThird = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
-    const third = Math.ceil(galleryImages.length / 3);
-    const firstPart = galleryImages.slice(0, third);
-    const secondPart = galleryImages.slice(third, 2 * third);
-    const thirdPart = galleryImages.slice(2 * third);
-
+export default function PremiumGallery() {
     return (
-        <div
-            className="w-full bg-[#050505] relative z-20 py-20 overflow-hidden"
-            ref={gridRef}
-        >
-            {/* Header Section */}
-            <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col items-center text-center"
-                >
-                    <span className="text-[#D4AF37] tracking-[0.4em] uppercase text-sm font-sans mb-4">
-                        Visual Legacy
-                    </span>
-                    <h2 className="text-4xl md:text-6xl font-bold font-sans text-transparent bg-clip-text bg-gradient-to-r from-white via-[#D4AF37] to-white">
-                        CAPTURING MOMENTS
-                    </h2>
-                    <div className="w-24 h-[1px] bg-[#D4AF37] mt-8 opacity-60"></div>
-                </motion.div>
-            </div>
+        <DraggableContainer variant="masonry" className="w-full">
+            <GridBody>
+                {images.map((image, index) => (
+                    <GridItem
+                        key={image.id}
+                        className="relative h-54 w-36 md:h-96 md:w-64"
+                    >
+                        <img
+                            src={image.src}
+                            alt={image.alt}
+                            className="pointer-events-none absolute h-full w-full object-cover"
 
-            {/* Parallax Grid */}
-            <div
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start max-w-7xl mx-auto gap-6 md:gap-10 px-6 md:px-10"
-            >
-                {/* Column 1 */}
-                <div className="grid gap-10">
-                    {firstPart.map((el, idx) => (
-                        <GalleryCard key={"g1-" + idx} item={el} idx={idx} translate={translateFirst} />
-                    ))}
-                </div>
-
-                {/* Column 2 */}
-                <div className="grid gap-10">
-                    {secondPart.map((el, idx) => (
-                        <GalleryCard key={"g2-" + idx} item={el} idx={idx} translate={translateSecond} />
-                    ))}
-                </div>
-
-                {/* Column 3 */}
-                <div className="grid gap-10">
-                    {thirdPart.map((el, idx) => (
-                        <GalleryCard key={"g3-" + idx} item={el} idx={idx} translate={translateThird} />
-                    ))}
-                </div>
-            </div>
-
-            {/* Background Glows */}
-            <div className="absolute top-1/4 left-[-10%] w-[40vw] h-[40vw] rounded-full bg-[#D4AF37] opacity-[0.03] blur-[120px] pointer-events-none"></div>
-            <div className="absolute bottom-1/4 right-[-10%] w-[40vw] h-[40vw] rounded-full bg-[#D4AF37] opacity-[0.03] blur-[120px] pointer-events-none"></div>
-        </div>
-    );
-};
-
-const GalleryCard = ({ item, idx, translate }: { item: any, idx: number, translate: any }) => {
-    return (
-        <motion.div
-            style={{ y: translate }}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: idx * 0.1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="group relative aspect-[3/4] overflow-hidden rounded-sm cursor-pointer"
-        >
-            <Image
-                src={item.src}
-                alt={item.title}
-                fill
-                className="object-cover transition-all duration-700 group-hover:scale-110 grayscale brightness-75 group-hover:grayscale-0 group-hover:brightness-100"
-            />
-
-            {/* Border Reveal */}
-            <div className="absolute inset-0 border border-[#D4AF37] opacity-0 scale-95 transition-all duration-500 group-hover:opacity-100 group-hover:scale-100 pointer-events-none"></div>
-
-            {/* Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                <span className="text-[#D4AF37] text-xs font-sans tracking-widest uppercase mb-1 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                    {item.year}
-                </span>
-                <h3 className="text-white text-xl font-sans font-bold translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    {item.title}
-                </h3>
-            </div>
-        </motion.div>
+                        />
+                    </GridItem>
+                ))}
+            </GridBody>
+        </DraggableContainer>
     );
 }
-
-export default PremiumGallery;

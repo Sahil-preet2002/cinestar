@@ -134,10 +134,10 @@ const Footer = () => {
 
   const navLinks = [
     { name: "HOME", href: "/" },
-    { name: "ABOUT US", href: "#about" },
-    { name: "EVENTS", href: "#events" },
-    { name: "GALLERY", href: "#gallery" },
-    { name: "CONTACT", href: "#contact" },
+    { name: "ABOUT US", href: "/about" },
+    { name: "EVENTS", href: "/events" },
+    { name: "GALLERY", href: "/gallery" },
+    { name: "CONTACT", href: "/contact" },
   ];
 
   const socialLinks = [

@@ -3,7 +3,6 @@ import Galaxy from "./components/Galaxy";
 import AnimatedSections from "./components/ui/animated-sections-1";
 import HeroScrollVideo from "./components/ui/scroll-animated-video";
 import ArtistShowcase from './components/ArtistShowcase';
-import PremiumGallery from "./components/ui/gallery-premium";
 import { HeroSection } from './components/ui/hero-section';
 import CinestarArchive from "./components/CinestarArchive";
 import Sponsors from "./components/Sponsors";
@@ -47,11 +46,6 @@ export default function Home() {
       {/* ARTIST SHOWCASE SECTION */}
       <section className="w-full">
         <ArtistShowcase />
-      </section>
-
-      {/* GALAXY PARALLAX SCROLL SECTION */}
-      <section className="w-full bg-black">
-        <PremiumGallery />
       </section>
 
       {/* ANIMATED SECTIONS */}
