@@ -16,17 +16,17 @@ const data = [
             {
                 name: "Sonu Nigam",
                 details: "09 JULY @ 06-10PM",
-                img: "https://images.unsplash.com/photo-1549834125-82d3c48159a3?q=80&w=1200",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Tri_Nation_Mega_Concert_Sonu_Nigam_%288388639915%29.jpg/500px-Tri_Nation_Mega_Concert_Sonu_Nigam_%288388639915%29.jpg",
             },
             {
                 name: "Jagjit Singh",
                 details: "10 JULY @ 07-11PM",
-                img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200",
+                img: "https://c.saavncdn.com/artists/Jagjit_Singh_500x500.jpg",
             },
             {
                 name: "Johnny Lever",
                 details: "11 JULY @ 06-09PM",
-                img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200",
+                img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/JohnnyLever.jpg/500px-JohnnyLever.jpg",
             },
         ],
     },
@@ -36,7 +36,7 @@ const data = [
             {
                 name: "Pankaj Udhas",
                 details: "15 AUGUST @ 07-11PM",
-                img: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?q=80&w=1200",
+                img: "https://static01.nyt.com/images/2024/03/06/multimedia/27xp-udhas-print1/27xp-udhas-superJumbo.jpg?quality=75&auto=webp",
             },
         ],
     },
@@ -46,12 +46,12 @@ const data = [
             {
                 name: "Sonu Nigam",
                 details: "20 OCT @ 06-10PM",
-                img: "https://images.unsplash.com/photo-1549834125-82d3c48159a3?q=80&w=1200",
+                img: "https://interviewtimes.net/wp-content/uploads/2024/10/61R4CnLSrL.jpg",
             },
             {
                 name: "Gurdas Maan",
                 details: "22 SEPT @ 06-10PM",
-                img: "https://images.unsplash.com/photo-1525672325444-9bc08657c96d?q=80&w=1200",
+                img: "https://superstarsbio.com/wp-content/uploads/2018/09/Gurdas-Maan-5.jpg",
             },
         ],
     },
@@ -61,7 +61,7 @@ const data = [
             {
                 name: "Jagjit Singh",
                 details: "02 OCT @ 08-11PM",
-                img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200",
+                img: "https://www.livemint.com/lm-img/img/2024/02/08/600x338/2-0-242603183-jagjit-singh-0_1681102564209_1707360141185.jpg",
             },
         ],
     },
@@ -69,9 +69,14 @@ const data = [
         year: "2011",
         artists: [
             {
-                name: "Johnny Lever",
-                details: "12 NOV @ 06-10PM",
-                img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1200",
+                name: "Asha Bhosle",
+                details: "",
+                img: "https://akm-img-a-in.tosshub.com/indiatoday/images/story/201509/asha-bhosle-647-x-404_090815123844.jpg?VersionId=NLMBVyuVdm8Of.BhA3wcsmkcFGBMn0Af&size=690:388",
+            },
+            {
+                name: "Pankaj Udhas",
+                details: "",
+                img: "https://stat4.bollywoodhungama.in/wp-content/uploads/2024/02/Remembering-Pankaj-Udhas-the-philanthropic-icon-of-music-1.jpg",
             },
         ],
     },
@@ -79,9 +84,9 @@ const data = [
         year: "2014",
         artists: [
             {
-                name: "Arijit Singh",
-                details: "20 JAN @ 07-11PM",
-                img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1200",
+                name: "Adnan Sami",
+                details: "",
+                img: "https://www.bollywoodhungama.com/wp-content/uploads/2023/01/Adnan-Sami.jpeg",
             },
         ],
     },
@@ -89,9 +94,14 @@ const data = [
         year: "2016",
         artists: [
             {
-                name: "Sunidhi Chauhan",
-                details: "05 MAY @ 06-10PM",
-                img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200",
+                name: "Shreya Ghoshal",
+                details: "",
+                img: "https://stat5.bollywoodhungama.in/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-24-at-4.43.34-PM.jpeg",
+            },
+            {
+                name: "Mika Singh",
+                details: "",
+                img: "https://drytickets.com.au/assets/upload/450/270/60/celebrities/308-mika-singh.jpg",
             },
         ],
     },
@@ -99,9 +109,29 @@ const data = [
         year: "2017",
         artists: [
             {
-                name: "Shreya Ghoshal",
-                details: "18 DEC @ 08-11PM",
-                img: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1200",
+                name: "Salman Khan",
+                details: "",
+                img: "https://stat4.bollywoodhungama.in/wp-content/uploads/2017/11/%E2%80%9CI-have-been-linked-with-most-beautiful-women-most-of-which-isnt-true%E2%80%9D-Salman-Khan-at-HT-Leadership-Summit-2017-1.jpg",
+            },
+        ],
+    },
+    {
+        year: "2019",
+        artists: [
+            {
+                name: "Rahat Fateh Ali Khan",
+                details: "",
+                img: "https://i.dawn.com/primary/2019/03/5c9b56e26a8a8.jpg",
+            },
+        ],
+    },
+    {
+        year: "2022",
+        artists: [
+            {
+                name: "Rahat Fateh Ali Khan",
+                details: "",
+                img: "https://executive-bulletin.com/wp-content/uploads/2022/10/Copy-of-RFAK_MMI_SSE_168-RS.jpg",
             },
         ],
     },

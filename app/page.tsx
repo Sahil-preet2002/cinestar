@@ -1,5 +1,4 @@
-import GeminiPlanner from "./components/GeminiPlanner";
-import Galaxy from "./components/Galaxy";
+
 import AnimatedSections from "./components/ui/animated-sections-1";
 import HeroScrollVideo from "./components/ui/scroll-animated-video";
 import ArtistShowcase from './components/ArtistShowcase';

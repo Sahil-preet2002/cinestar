@@ -72,7 +72,7 @@ export const HeroSection = () => {
     const handleParallax = (e: MouseEvent) => {
       const xVal = (e.clientX / window.innerWidth - 0.5) * 2;
       const yVal = (e.clientY / window.innerHeight - 0.5) * 2;
-      
+
       gsap.to(".image-mask", {
         rotationY: xVal * 5,
         rotationX: -yVal * 5,
@@ -179,7 +179,7 @@ export const HeroSection = () => {
       <div className="noise"></div>
 
       <main ref={heroRef} className="relative min-h-screen w-full flex items-center overflow-hidden bg-[#050505] text-white font-['Inter']">
-        
+
         {/* Large Kinetic Background */}
         <div className="absolute inset-0 flex flex-col justify-center pointer-events-none z-0">
           <div className="bg-text-outline font-display marquee-left">YOGESH SHARMA YOGESH SHARMA</div>
@@ -187,7 +187,7 @@ export const HeroSection = () => {
         </div>
 
         <div className="container mx-auto px-6 lg:px-20 relative z-10 grid grid-cols-12 gap-4 items-center py-20 md:py-32">
-          
+
           {/* PORTRAIT: Editorial Style */}
           <div className="col-span-12 lg:col-span-5 order-2 lg:order-1 relative">
             <div className="relative w-full max-w-lg mx-auto lg:mx-0">
@@ -195,11 +195,11 @@ export const HeroSection = () => {
               <div className="absolute -top-10 left-0 text-[10px] tracking-[0.8em] uppercase text-[#d4af37] opacity-60 label-anim">
                 Executive Director
               </div>
-              
+
               <div className="image-mask shadow-2xl overflow-hidden aspect-[4/5] relative">
-                <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&q=80&w=1200" 
-                     className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-1000 transform scale-110" 
-                     alt="Yogesh Sharma" id="main-img" />
+                <img src="/images/yogesh.jpeg"
+                  className="w-full h-full object-cover grayscale brightness-90 hover:grayscale-0 transition-all duration-1000 transform scale-110"
+                  alt="Yogesh Sharma" id="main-img" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
               </div>
 
@@ -232,7 +232,7 @@ export const HeroSection = () => {
 
               <div className="max-w-lg space-y-6 text-gray-400 font-light text-lg leading-relaxed content-reveal">
                 <p className="opacity-0 translate-y-10">
-                  Entertainment is <span className="text-white italic">serious business</span>. It is the alchemy of connecting legendary talent with the souls who admire them most. 
+                  Entertainment is <span className="text-white italic">serious business</span>. It is the alchemy of connecting legendary talent with the souls who admire them most.
                 </p>
                 <p className="opacity-0 translate-y-10">
                   For 20 years, we haven't just booked venues; we've curated <span className="text-white">cultural milestones</span>. From the heart of Bollywood to the stages of the South Pacific, the vision remains singular: Professional excellence with a personal touch.
@@ -249,7 +249,7 @@ export const HeroSection = () => {
                     </svg>
                   </a>
                 </div>
-                
+
                 <div className="hidden md:block pb-2 opacity-0 sig-anim">
                   <div className="font-serif italic text-4xl text-white opacity-40">Yogesh Sharma</div>
                 </div>

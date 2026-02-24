@@ -23,16 +23,13 @@ interface AnimatedSectionsProps {
 const defaultSections: SectionData[] = [
   {
     text: "Whispers of Radiance",
-    img: "https://raw.githubusercontent.com/66HEX/free-photos/main/img1.jpeg"
+    img: "https://cinestarevents.com.au/wp-content/uploads/2025/01/arijit-ban-1.jpg"
   },
   {
     text: "Ethereal Moments",
-    img: "https://raw.githubusercontent.com/66HEX/free-photos/main/img3.jpeg"
+    img: "https://cinestarevents.com.au/wp-content/uploads/2024/07/slider06.jpg"
   },
-  {
-    text: "Silent Beauty",
-    img: "https://raw.githubusercontent.com/66HEX/free-photos/main/img5.jpeg"
-  }
+
 ];
 
 const AnimatedSections: React.FC<AnimatedSectionsProps> = ({
@@ -59,25 +56,25 @@ const AnimatedSections: React.FC<AnimatedSectionsProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const autoScrollTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-useEffect(() => {
-  let loaded = 0;
-  sections.forEach((section) => {
-    const img = new Image();
-    img.src = section.img;
-    img.onload = () => {
-      loaded++;
-      if (loaded === sections.length) {
-        setImagesLoaded(true);
-      }
-    };
-    img.onerror = () => {
-      loaded++;
-      if (loaded === sections.length) {
-        setImagesLoaded(true);
-      }
-    };
-  });
-}, [sections]);
+  useEffect(() => {
+    let loaded = 0;
+    sections.forEach((section) => {
+      const img = new Image();
+      img.src = section.img;
+      img.onload = () => {
+        loaded++;
+        if (loaded === sections.length) {
+          setImagesLoaded(true);
+        }
+      };
+      img.onerror = () => {
+        loaded++;
+        if (loaded === sections.length) {
+          setImagesLoaded(true);
+        }
+      };
+    });
+  }, [sections]);
 
   const gotoSection = useCallback((index: number, direction: number) => {
     if (!containerRef.current || animatingRef.current) return;
@@ -220,7 +217,7 @@ useEffect(() => {
   }, []);
 
   useGSAP(() => {
-  if (!containerRef.current || !imagesLoaded) return;
+    if (!containerRef.current || !imagesLoaded) return;
 
     gsap.registerPlugin(Observer, SplitText);
 
@@ -287,7 +284,7 @@ useEffect(() => {
   }, { scope: containerRef, dependencies: [sections.length, imagesLoaded] });
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className={`h-screen w-full overflow-hidden bg-black text-white uppercase font-sans relative ${className}`}
     >
@@ -310,15 +307,14 @@ useEffect(() => {
                 alt={`Section ${i + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div 
-                 className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out ${
-                   currentIndex !== i ? 'opacity-50' : 'opacity-0'
-                 }`} 
-               />
+              <div
+                className={`absolute inset-0 bg-black transition-opacity duration-1000 ease-in-out ${currentIndex !== i ? 'opacity-50' : 'opacity-0'
+                  }`}
+              />
             </div>
           ))}
         </div>
-        
+
         {/* Counter */}
         <div className="text-xs md:text-sm tracking-wider flex items-center gap-1">
           <div className="relative overflow-hidden h-[1em] leading-[1em] min-w-[0.8em]">
@@ -330,8 +326,8 @@ useEffect(() => {
       </div>
 
       {sections.map((section, i) => (
-        <section 
-          key={`section-${i}`} 
+        <section
+          key={`section-${i}`}
           className="absolute inset-0 h-full w-full invisible"
           ref={(el) => { if (el) sectionsRefs.current[i] = el; }}
         >
