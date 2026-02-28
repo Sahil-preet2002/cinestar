@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 
 const FlipLink = ({ children, href, className }: { children: string; href: string; className?: string }) => {
-  const defaultClassName = "group text-yellow-400 relative block overflow-hidden whitespace-nowrap text-2xl font-black uppercase sm:text-3xl md:text-4xl lg:text-5xl hover:text-yellow-200 transition-colors duration-300";
-  
+  const defaultClassName = "group text-yellow-400 relative block overflow-hidden whitespace-nowrap text-2xl font-normal uppercase sm:text-3xl md:text-4xl lg:text-5xl hover:text-yellow-200 transition-colors duration-300";
+
   return (
     <Link
       href={href}

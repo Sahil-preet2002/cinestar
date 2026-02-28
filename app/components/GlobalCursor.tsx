@@ -22,8 +22,8 @@ export default function GlobalCursor() {
 
   return (
     <>
-      <div ref={cursorRef} className="hidden lg:block fixed w-[10px] h-[10px] bg-[#D4AF37] rounded-full pointer-events-none z-[9999] shadow-[0_0_20px_#D4AF37]" />
-      <div ref={followerRef} className="hidden lg:block fixed w-[40px] h-[40px] border border-[#D4AF37] rounded-full pointer-events-none z-[9998]" />
+      <div ref={cursorRef} className="hidden lg:block fixed w-[8px] h-[8px] bg-[#D4AF37] rounded-full pointer-events-none z-[9999] shadow-[0_0_20px_#D4AF37]" />
+      <div ref={followerRef} className="hidden lg:block fixed w-[30px] h-[30px] border border-[#D4AF37] rounded-full pointer-events-none z-[9998]" />
     </>
   );
 }

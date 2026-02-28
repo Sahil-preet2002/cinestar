@@ -142,7 +142,6 @@ export default function CinestarArchive() {
     const [currentArtistIndex, setCurrentArtistIndex] = useState(0);
     const [isAnimating, setIsAnimating] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
-    const cursorRef = useRef<HTMLDivElement>(null);
     const slideRef = useRef<HTMLDivElement>(null);
 
     // Helper to get current artist data
@@ -273,13 +272,6 @@ export default function CinestarArchive() {
     // Mouse Interactions
     useGSAP(() => {
         const handleMouseMove = (e: MouseEvent) => {
-            if (cursorRef.current) {
-                gsap.to(cursorRef.current, {
-                    x: e.clientX,
-                    y: e.clientY,
-                    duration: 0.1,
-                });
-            }
 
             if (!isAnimating && containerRef.current) {
                 const imgContainer = containerRef.current.querySelector(
@@ -373,7 +365,6 @@ export default function CinestarArchive() {
     return (
         <div className={styles.container} ref={containerRef} id="archive">
             <div className={styles.noise}></div>
-            <div className={styles.cursor} ref={cursorRef} id="cursor"></div>
 
             <div className={styles.mainHeading}>
                 <h1 className={styles.syncopate}>Cinestar Through The Years</h1>

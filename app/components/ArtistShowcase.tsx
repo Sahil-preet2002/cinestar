@@ -120,7 +120,7 @@ export default function ArtistShowcase() {
           letter-spacing: -0.02em;
         }
         @media (hover: hover) and (pointer: fine) {
-          .artist-showcase { cursor: none; }
+
         }
       `}} />
 

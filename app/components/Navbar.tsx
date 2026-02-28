@@ -48,7 +48,7 @@ const Navbar = ({ activePath }: { activePath?: string }) => {
     }
 
     if (isMenuOpen) {
-      // Creative entrance animation - scale and rotate from center
+      // Creative entrance animation - slide from right
       gsap.fromTo(menuRef.current,
         {
           opacity: 0,
@@ -60,92 +60,39 @@ const Navbar = ({ activePath }: { activePath?: string }) => {
           opacity: 1,
           pointerEvents: "auto",
           duration: 0.5,
-          ease: "power3.out"
+          ease: "power3.out",
+          overwrite: "auto"
         }
       );
 
       // Hamburger to X animation
-      gsap.to(line1Ref.current, { rotation: 45, y: 8, duration: 0.3, ease: "power2.out" });
-      gsap.to(line2Ref.current, { opacity: 0, scale: 0, duration: 0.2 });
-      gsap.to(line3Ref.current, { rotation: -45, y: -8, duration: 0.3, ease: "power2.out" });
+      gsap.to(line1Ref.current, { rotation: 45, y: 8, duration: 0.3, ease: "power2.out", overwrite: "auto" });
+      gsap.to(line2Ref.current, { opacity: 0, scale: 0, duration: 0.2, overwrite: "auto" });
+      gsap.to(line3Ref.current, { rotation: -45, y: -8, duration: 0.3, ease: "power2.out", overwrite: "auto" });
 
-      // Animate nav heading
-      const heading = menuRef.current?.querySelector('.menu-heading');
-      if (heading) {
-        gsap.fromTo(heading,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.1 }
-        );
-      }
+      // Animate all elements together to improve performance and prevent stuttering
+      const elementsToAnimate = [
+        menuRef.current?.querySelector('.menu-heading'),
+        ...(menuRef.current?.querySelectorAll('.menu-nav-link') || []),
+        menuRef.current?.querySelector('.contact-heading'),
+        ...(menuRef.current?.querySelectorAll('.contact-item') || []),
+        menuRef.current?.querySelector('.follow-heading'),
+        ...(menuRef.current?.querySelectorAll('.social-icon-menu') || []),
+        menuRef.current?.querySelector('.book-btn-menu')
+      ].filter(Boolean); // Create one cleaned up array of all nodes
 
-      // Animate nav links
-      const navLinks = menuRef.current?.querySelectorAll('.menu-nav-link');
-      if (navLinks) {
-        gsap.fromTo(navLinks,
-          { opacity: 0, x: 50 },
+      if (elementsToAnimate.length > 0) {
+        gsap.fromTo(elementsToAnimate,
+          { opacity: 0, x: 30 },
           {
             opacity: 1,
             x: 0,
-            duration: 0.5,
-            stagger: 0.05,
-            ease: "power2.out",
-            delay: 0.2
-          }
-        );
-      }
-
-      // Animate contact section
-      const contactHeading = menuRef.current?.querySelector('.contact-heading');
-      const contactItems = menuRef.current?.querySelectorAll('.contact-item');
-      if (contactHeading) {
-        gsap.fromTo(contactHeading,
-          { opacity: 0, x: 40 },
-          { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", delay: 0.3 }
-        );
-      }
-      if (contactItems) {
-        gsap.fromTo(contactItems,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
             duration: 0.4,
-            stagger: 0.05,
+            stagger: 0.03, // A single quick stagger for everything
             ease: "power2.out",
-            delay: 0.35
+            delay: 0.1,
+            overwrite: "auto"
           }
-        );
-      }
-
-      // Animate social icons
-      const followHeading = menuRef.current?.querySelector('.follow-heading');
-      const socialIcons = menuRef.current?.querySelectorAll('.social-icon-menu');
-      if (followHeading) {
-        gsap.fromTo(followHeading,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", delay: 0.4 }
-        );
-      }
-      if (socialIcons) {
-        gsap.fromTo(socialIcons,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            stagger: 0.05,
-            ease: "power2.out",
-            delay: 0.45
-          }
-        );
-      }
-
-      // Animate CTA button
-      const bookBtn = menuRef.current?.querySelector('.book-btn-menu');
-      if (bookBtn) {
-        gsap.fromTo(bookBtn,
-          { opacity: 0, y: 20 },
-          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.5 }
         );
       }
     } else {
@@ -155,13 +102,14 @@ const Navbar = ({ activePath }: { activePath?: string }) => {
         opacity: 0,
         pointerEvents: "none",
         duration: 0.4,
-        ease: "power3.in"
+        ease: "power3.in",
+        overwrite: "auto"
       });
 
       // Reset hamburger lines
-      gsap.to(line1Ref.current, { rotation: 0, y: 0, duration: 0.3 });
-      gsap.to(line2Ref.current, { opacity: 1, scale: 1, duration: 0.3 });
-      gsap.to(line3Ref.current, { rotation: 0, y: 0, duration: 0.3 });
+      gsap.to(line1Ref.current, { rotation: 0, y: 0, duration: 0.3, overwrite: "auto" });
+      gsap.to(line2Ref.current, { opacity: 1, scale: 1, duration: 0.3, overwrite: "auto" });
+      gsap.to(line3Ref.current, { rotation: 0, y: 0, duration: 0.3, overwrite: "auto" });
     }
   }, [isMenuOpen]);
 
@@ -433,7 +381,7 @@ const Navbar = ({ activePath }: { activePath?: string }) => {
           </div>
 
           {/* Follow Us & Button */}
-          <div className="space-y-8">
+          <div className="space-y-8 mt-auto pt-8 border-t border-yellow-500/20">
             <div>
               <h4 className="follow-heading text-white text-xl font-sans font-bold uppercase tracking-widest mb-8">Follow Us</h4>
               <div className="flex items-center gap-10">
@@ -453,12 +401,6 @@ const Navbar = ({ activePath }: { activePath?: string }) => {
               </div>
             </div>
 
-            {/* CTA Button */}
-            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-              <button className="book-btn-menu w-full px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-sans font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/50 text-lg">
-                Book an Event →
-              </button>
-            </Link>
           </div>
         </div>
       </div>

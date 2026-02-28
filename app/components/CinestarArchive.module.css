@@ -10,8 +10,6 @@
     height: 100vh;
     width: 100%;
     position: relative;
-    cursor: none;
-    /* Hide default cursor */
 }
 
 /* Removed Next.js font classes */
