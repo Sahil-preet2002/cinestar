@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Facebook, Instagram, Twitter, Youtube, Mail } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import clsx from "clsx";
 
 const Footer = () => {
@@ -175,15 +176,18 @@ const Footer = () => {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="relative"
           >
-            {/* Glow effect behind text */}
+            {/* Glow effect behind logo */}
             <div className="absolute inset-0 bg-[#D4AF37] blur-[80px] opacity-20" />
 
-            <h1 className="text-[12vw] md:text-[5rem] font-bold tracking-tighter leading-none font-sans text-transparent bg-clip-text bg-gradient-to-b from-[#FFF5C3] to-[#D4AF37] drop-shadow-2xl">
-              CINESTAR
-            </h1>
-            <span className="text-xl md:text-2xl tracking-[0.6em] text-[#D4AF37] font-sans font-light mt-[-10px] block">
-              EVENTS
-            </span>
+            <div className="relative z-10 flex flex-col items-center">
+              <Image
+                src="/images/logo/CineStar.png"
+                alt="CineStar Events Logo"
+                width={400}
+                height={150}
+                className="w-64 md:w-96 h-auto object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.4)] transition-transform duration-500 hover:scale-105 hover:drop-shadow-[0_0_30px_rgba(234,179,8,0.7)]"
+              />
+            </div>
           </motion.div>
         </div>
 

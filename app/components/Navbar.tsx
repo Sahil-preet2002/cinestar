@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu, X, Instagram, Facebook, Twitter } from 'lucide-react';
 import { gsap } from 'gsap';
 import { FlipLink } from './ui/flip-links';
@@ -16,6 +17,7 @@ const Navbar = () => {
   const navRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const iconRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const isInitialMount = useRef(true);
 
   const navLinks = [
     { name: 'HOME', href: '/' },
@@ -40,100 +42,100 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      return;
+    }
+
     if (isMenuOpen) {
       // Creative entrance animation - scale and rotate from center
       gsap.fromTo(menuRef.current,
         {
-          scale: 0,
-          rotation: -15,
-          transformOrigin: "top right",
-          opacity: 0
+          opacity: 0,
+          pointerEvents: "none",
+          x: "100%"
         },
         {
-          scale: 1,
-          rotation: 0,
+          x: "0%",
           opacity: 1,
-          duration: 0.8,
-          ease: "back.out(1.4)"
+          pointerEvents: "auto",
+          duration: 0.5,
+          ease: "power3.out"
         }
       );
 
-      // Hamburger to X animation with bounce
-      gsap.to(line1Ref.current, { rotation: 45, y: 8, duration: 0.4, ease: "back.out(2)" });
-      gsap.to(line2Ref.current, { opacity: 0, scale: 0, duration: 0.3 });
-      gsap.to(line3Ref.current, { rotation: -45, y: -8, duration: 0.4, ease: "back.out(2)" });
+      // Hamburger to X animation
+      gsap.to(line1Ref.current, { rotation: 45, y: 8, duration: 0.3, ease: "power2.out" });
+      gsap.to(line2Ref.current, { opacity: 0, scale: 0, duration: 0.2 });
+      gsap.to(line3Ref.current, { rotation: -45, y: -8, duration: 0.3, ease: "power2.out" });
 
-      // Animate nav heading with typewriter effect
+      // Animate nav heading
       const heading = menuRef.current?.querySelector('.menu-heading');
       if (heading) {
         gsap.fromTo(heading,
-          { opacity: 0, y: 50, rotationX: -90 },
-          { opacity: 1, y: 0, rotationX: 0, duration: 0.8, ease: "power3.out", delay: 0.2 }
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.1 }
         );
       }
 
-      // Animate nav links with creative stagger and 3D effect
+      // Animate nav links
       const navLinks = menuRef.current?.querySelectorAll('.menu-nav-link');
       if (navLinks) {
         gsap.fromTo(navLinks,
-          { opacity: 0, y: 100, rotationY: -90, scale: 0.5 },
+          { opacity: 0, x: 50 },
           {
             opacity: 1,
-            y: 0,
-            rotationY: 0,
-            scale: 1,
-            duration: 0.7,
-            stagger: 0.15,
-            ease: "back.out(1.2)",
-            delay: 0.4
+            x: 0,
+            duration: 0.5,
+            stagger: 0.05,
+            ease: "power2.out",
+            delay: 0.2
           }
         );
       }
 
-      // Animate contact section with wave effect
+      // Animate contact section
       const contactHeading = menuRef.current?.querySelector('.contact-heading');
       const contactItems = menuRef.current?.querySelectorAll('.contact-item');
       if (contactHeading) {
         gsap.fromTo(contactHeading,
-          { opacity: 0, x: 100, rotationZ: 10 },
-          { opacity: 1, x: 0, rotationZ: 0, duration: 0.8, ease: "elastic.out(1, 0.5)", delay: 0.6 }
+          { opacity: 0, x: 40 },
+          { opacity: 1, x: 0, duration: 0.4, ease: "power2.out", delay: 0.3 }
         );
       }
       if (contactItems) {
         gsap.fromTo(contactItems,
-          { opacity: 0, x: 80, scale: 0.8 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
-            x: 0,
-            scale: 1,
-            duration: 0.6,
-            stagger: 0.1,
+            y: 0,
+            duration: 0.4,
+            stagger: 0.05,
             ease: "power2.out",
-            delay: 0.8
+            delay: 0.35
           }
         );
       }
 
-      // Animate social icons with bounce
+      // Animate social icons
       const followHeading = menuRef.current?.querySelector('.follow-heading');
       const socialIcons = menuRef.current?.querySelectorAll('.social-icon-menu');
       if (followHeading) {
         gsap.fromTo(followHeading,
-          { opacity: 0, y: 30, scale: 0.5 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.7)", delay: 1 }
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.4, ease: "power2.out", delay: 0.4 }
         );
       }
       if (socialIcons) {
         gsap.fromTo(socialIcons,
-          { opacity: 0, scale: 0, rotation: -180 },
+          { opacity: 0, y: 20 },
           {
             opacity: 1,
-            scale: 1,
-            rotation: 0,
-            duration: 0.5,
-            stagger: 0.1,
-            ease: "back.out(2)",
-            delay: 1.2
+            y: 0,
+            duration: 0.4,
+            stagger: 0.05,
+            ease: "power2.out",
+            delay: 0.45
           }
         );
       }
@@ -142,19 +144,18 @@ const Navbar = () => {
       const bookBtn = menuRef.current?.querySelector('.book-btn-menu');
       if (bookBtn) {
         gsap.fromTo(bookBtn,
-          { opacity: 0, y: 50, scale: 0.8 },
-          { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "back.out(1.4)", delay: 1.4 }
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.5 }
         );
       }
     } else {
-      // Creative exit animation - scale down and rotate
+      // Fast exit animation - slide right
       gsap.to(menuRef.current, {
-        scale: 0,
-        rotation: 15,
-        transformOrigin: "top right",
+        x: "100%",
         opacity: 0,
-        duration: 0.5,
-        ease: "back.in(1.7)"
+        pointerEvents: "none",
+        duration: 0.4,
+        ease: "power3.in"
       });
 
       // Reset hamburger lines
@@ -264,46 +265,29 @@ const Navbar = () => {
         `}
       >
 
-        {/* LOGO SECTION */}
-        <Link href="/" className="flex-shrink-0 cursor-pointer group relative">
+        <Link href="/" className="flex-shrink-0 cursor-pointer group relative block h-14 md:h-16">
           <div
             ref={logoRef}
-            className="relative flex flex-col items-center hover:scale-110 transition-transform duration-300"
+            className=" md:-top-5 left-0 flex flex-col items-center hover:scale-110 transition-transform duration-300"
           >
-            <div className="flex items-center relative">
-              {/* Left stars */}
-              <div className="flex flex-col justify-end mr-1 pb-1 space-y-0.5 animate-pulse">
-                <StarIcon size={6} className="text-yellow-500 fill-current" />
-                <StarIcon size={4} className="text-yellow-600 fill-current ml-2" />
-              </div>
-
-              {/* Main logo text */}
-              <div className="group/logo relative">
-                <h1 className="text-4xl md:text-5xl font-bold uppercase leading-none tracking-tighter">
-                  <span className="bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent transition-all duration-300 group-hover/logo:from-yellow-100 group-hover/logo:via-yellow-300 group-hover/logo:to-yellow-500">
-                    Cine
-                  </span>
-                  <span className="text-yellow-400 mx-1 drop-shadow-lg group-hover/logo:text-yellow-300 transition-colors">|</span>
-                  <span className="bg-gradient-to-b from-yellow-200 via-yellow-400 to-yellow-600 bg-clip-text text-transparent transition-all duration-300 group-hover/logo:from-yellow-100 group-hover/logo:via-yellow-300 group-hover/logo:to-yellow-500">
-                    Star
-                  </span>
-                </h1>
-              </div>
-
-              {/* Right stars */}
-              <div className="flex flex-col justify-end ml-1 pb-1 space-y-0.5">
-                <StarIcon size={6} className="text-yellow-500 fill-current" />
-                <StarIcon size={4} className="text-yellow-600 fill-current mr-2" />
+            <div className="flex items-center ">
+              {/* Main logo image */}
+              <div className="group/logo relative z-10 flex flex-col items-center">
+                <Image
+                  src="/images/logo/CineStar.png"
+                  alt="CineStar Events Logo"
+                  width={220}
+                  height={80}
+                  className="h-16 md:h-24 w-auto object-contain drop-shadow-[0_0_15px_rgba(234,179,8,0.3)] transition-all duration-300 group-hover/logo:drop-shadow-[0_0_25px_rgba(234,179,8,0.6)]"
+                  priority
+                />
               </div>
             </div>
 
-            {/* Subtitle with glow effect */}
-            <span className="text-[10px] md:text-xs tracking-[0.4em] text-yellow-300 uppercase font-light mt-1 opacity-80 group-hover:opacity-100 group-hover:text-yellow-200 transition-all">
-              Events
-            </span>
+
 
             {/* Glow background on hover */}
-            <div className="absolute -inset-6 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 rounded-lg opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300 blur" />
+            {/* <div className="absolute -inset-6 bg-gradient-to-r from-yellow-500/20 to-yellow-600/20 rounded-lg opacity-0 group-hover:opacity-100 -z-10 transition-opacity duration-300 blur" /> */}
           </div>
         </Link>
 
@@ -335,8 +319,7 @@ const Navbar = () => {
       {/* Sidebar Menu */}
       <div
         ref={menuRef}
-        className="fixed top-0 right-0 w-full h-screen bg-gradient-to-b from-black/98 via-black/95 to-black/98 backdrop-blur-xl z-[105] border-l border-yellow-500/30 flex flex-col md:flex-row overflow-y-auto md:overflow-y-visible opacity-0 scale-0"
-        style={{ transformOrigin: 'top right' }}
+        className="fixed top-0 w-full h-screen bg-gradient-to-b from-black/98 via-black/95 to-black/98 backdrop-blur-xl z-[105] border-l border-yellow-500/30 flex flex-col md:flex-row overflow-y-auto md:overflow-y-visible opacity-0 pointer-events-none translate-x-full"
       >
         {/* Close Button */}
         <button
@@ -471,9 +454,11 @@ const Navbar = () => {
             </div>
 
             {/* CTA Button */}
-            <button className="book-btn-menu w-full px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-sans font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/50 text-lg">
-              Book an Event →
-            </button>
+            <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+              <button className="book-btn-menu w-full px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-black font-sans font-bold uppercase tracking-widest rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-yellow-500/50 text-lg">
+                Book an Event →
+              </button>
+            </Link>
           </div>
         </div>
       </div>
