@@ -36,11 +36,11 @@ export default function Home() {
           "--muted": "rgba(255, 255, 255, 0.6)",
         }}
       />
-
+      <CinestarArchive />
       <section className="w-full">
         <HeroSection />
       </section>
-      <CinestarArchive />
+
 
       {/* ARTIST SHOWCASE SECTION */}
       <section className="w-full">
