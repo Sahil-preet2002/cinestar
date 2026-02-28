@@ -6,7 +6,7 @@ import { Menu, X, Instagram, Facebook, Twitter } from 'lucide-react';
 import { gsap } from 'gsap';
 import { FlipLink } from './ui/flip-links';
 
-const Navbar = () => {
+const Navbar = ({ activePath }: { activePath?: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
