@@ -28,9 +28,10 @@ export default function Home() {
             "Starting two decades ago in 2004, Cinestar Events has consistently raised the bar in live entertainment from Bollywood. We have worked with legends as well as new talent – bringing actors, singers, dancers – and organised over 120 super successful shows across the region.",
           ],
         }}
-        themeMode="system"
+        themeMode="dark"
         style={{
           //@ts-ignore
+          "--bg": "#050505",
           "--text": "#ffffff",
           "--accent": "#D4AF37",
           "--muted": "rgba(255, 255, 255, 0.6)",
